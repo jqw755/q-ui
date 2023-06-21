@@ -1,0 +1,64 @@
+{
+  "name": "@jqw755/q-ui",
+  "version": "0.0.3",
+  "private": false,
+  "type": "module",
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/q-ui.umd.cjs",
+  "module": "./dist/q-ui.js",
+  "exports": {
+    "./dist/style.css": "./dist/style.css",
+    "./css": "./dist/style.css",
+    ".": {
+      "import": "./dist/q-ui.js",
+      "require": "./dist/q-ui.umd.cjs"
+    }
+  },
+  "author": "jingqw",
+  "license": "ISC",
+  "keywords": [
+    "Vue3",
+    "TS",
+    "Vite",
+    "Vue ui",
+    "UI"
+  ],
+  "homepage": "https://github.com/jqw755/q-ui#readme",
+  "description": "q-ui",
+  "scripts": {
+    "dev": "vite --port 9000 --open --force",
+    "docs:dev": "vitepress dev docs --port 8000 --open",
+    "docs:build": "vitepress build docs",
+    "docs:deploy": "sh script/deploy.sh",
+    "pub": "sh script/publish.sh",
+    "build": "run-p type-check build-only",
+    "preview": "vite preview",
+    "build-only": "vite build --mode prod",
+    "type-check": "vue-tsc --noEmit -p tsconfig.app.json --composite false"
+  },
+  "dependencies": {
+    "@jqw755/q-ui": "^0.0.3",
+    "sass": "^1.63.3",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^2.0.1",
+    "@types/node": "^18.16.17",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vitejs/plugin-vue-jsx": "^3.0.1",
+    "@vue/tsconfig": "^0.4.0",
+    "vitepress": "^1.0.0-beta.2",
+    "npm-run-all": "^4.1.5",
+    "terser": "^5.18.0",
+    "typescript": "~5.0.4",
+    "vite": "^4.3.9",
+    "vue-tsc": "^1.6.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jqw755/q-ui"
+  }
+}

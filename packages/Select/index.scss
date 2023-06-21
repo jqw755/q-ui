@@ -1,0 +1,140 @@
+.m-select {
+  position: relative;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(0, 0, 0, 0.65);
+}
+.fade-enter-active,
+.fade-leave-active {
+  transform: scaleY(1);
+  transform-origin: 0% 0%;
+  opacity: 1;
+  transition: all 0.3s;
+}
+.fade-enter-from {
+  transform: scaleY(0.8);
+  transform-origin: 0% 0%;
+  opacity: 0;
+}
+.fade-leave-to {
+  transform: scaleY(1);
+  opacity: 0;
+}
+.m-select-wrap {
+  position: relative;
+  z-index: 8;
+  display: inline-block;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  background-color: #fff;
+  cursor: pointer;
+  transition: all 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  .u-select-input {
+    display: block;
+    text-align: left;
+    margin-left: 11px;
+    margin-right: 27px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .placeholder {
+    color: #bfbfbf;
+  }
+  .triangle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 11px;
+    width: 12px;
+    height: 12px;
+    fill: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+  }
+  .rotate {
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+  }
+  .close {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    right: 11px;
+    width: 12px;
+    height: 12px;
+    fill: rgba(140, 140, 140, 0.6);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      fill: rgba(100, 100, 100, 0.8);
+    }
+  }
+  .show {
+    opacity: 1;
+    pointer-events: auto;
+  }
+}
+.hover {
+  // 悬浮时样式
+  &:hover {
+    border-color: $primary-color;
+  }
+}
+.focus {
+  // 激活时样式
+  border-color: $primary-color;
+  // fade()函数降低颜色变量透明度
+  box-shadow: 0 0 0 2px fade($primary-color, 20%);
+}
+.disabled {
+  // 下拉禁用样式
+  color: rgba(0, 0, 0, 0.25);
+  background: #f5f5f5;
+  user-select: none;
+  cursor: not-allowed;
+}
+.m-options-panel {
+  position: absolute;
+  z-index: 9;
+  overflow: auto;
+  background: #fff;
+  padding: 4px 0;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 15%);
+  .u-option {
+    // 下拉项默认样式
+    text-align: left;
+    position: relative;
+    display: block;
+    padding: 5px 12px;
+    font-weight: 400;
+    line-height: inherit;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  .option-selected {
+    // 被选中的下拉项样式
+    font-weight: 600;
+    background: #fafafa;
+  }
+  .option-hover {
+    // 悬浮时的下拉项样式
+    background: #e6f7ff;
+    // background: saturate(fade($primary-color, 12%), 30%);
+  }
+  .option-disabled {
+    // 禁用某个下拉选项时的样式
+    color: rgba(0, 0, 0, 0.25);
+    user-select: none;
+    cursor: not-allowed;
+  }
+}

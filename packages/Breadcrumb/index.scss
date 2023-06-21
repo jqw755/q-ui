@@ -1,0 +1,45 @@
+.m-breadcrumb {
+  display: flex;
+  align-items: center;
+  .m-bread {
+    display: inline-flex;
+    align-items: center;
+    line-height: 1.5;
+    .u-route {
+      color: rgba(0, 0, 0, 0.45);
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      cursor: pointer;
+      padding: 0 4px;
+      border-radius: 4px;
+      transition: color 0.2s, background-color 0.2s;
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.05);
+        color: rgba(0, 0, 0, 0.88);
+      }
+    }
+    .active {
+      color: rgba(0, 0, 0, 0.88);
+      cursor: default;
+      &:hover {
+        background-color: transparent;
+      }
+    }
+    .u-separator {
+      margin: 0 4px;
+      color: rgba(0, 0, 0, 0.45);
+    }
+    .u-arrow {
+      width: 12px;
+      height: 12px;
+      fill: rgba(0, 0, 0, 0.45);
+    }
+  }
+  .assist {
+    height: 100%;
+    width: 0;
+    display: inline-block;
+    vertical-align: middle;
+  }
+}

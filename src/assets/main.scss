@@ -1,0 +1,41 @@
+// 主题色
+$primary-color: #1bb760;
+// 普通边框色
+$border-color: #dcdfe6;
+$listWitdh: 5, 10, 15, 20, 25, 30, 40, 50, 60, 100;
+$listMarginPadding: 0, 2, 5, 8, 10, 12, 14, 15, 16, 18, 20, 24, 25, 30, 36, 40, 50, 100;
+
+@each $item in $listWitdh {
+  .w#{$item} {
+    width: $item * 1%;
+  }
+}
+
+@each $item in $listMarginPadding {
+  /* margin 外边距 */
+  .ml-#{$item} {
+    margin-left: #{$item}px;
+  }
+  .mr-#{$item} {
+    margin-right: #{$item}px;
+  }
+  .mt-#{$item} {
+    margin-top: #{$item}px;
+  }
+  .mb-#{$item} {
+    margin-bottom: #{$item}px;
+  }
+  /* padding 内边距 */
+  .pl-#{$item} {
+    padding-left: #{$item}px;
+  }
+  .pr-#{$item} {
+    padding-right: #{$item}px;
+  }
+  .pt-#{$item} {
+    padding-top: #{$item}px;
+  }
+  .pb-#{$item} {
+    padding-bottom: #{$item}px;
+  }
+}

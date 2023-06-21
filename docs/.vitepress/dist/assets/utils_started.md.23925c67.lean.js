@@ -1,0 +1,1 @@
+import{_ as t,c as e,o as a,V as s}from"./chunks/framework.dc35932b.js";const D=JSON.parse('{"title":"快速上手","description":"","frontmatter":{},"headers":[],"relativePath":"utils/started.md","filePath":"utils/started.md"}'),l={name:"utils/started.md"},n=s("",7),o=[n];function r(d,p,i,c,y,u){return a(),e("div",null,o)}const f=t(l,[["render",r]]);export{D as __pageData,f as default};
