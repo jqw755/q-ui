@@ -2,7 +2,7 @@
 
 ## 介绍
 
-该组件库采用 Vite3 + Vue3 + TS + Scss 实现！
+该组件库采用 Vite4 + Vue3 + TS + Scss 实现！
 
 ## 三种使用方式
 

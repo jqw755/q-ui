@@ -72,7 +72,8 @@
     </Transition>
   </div>
 </template>
-<script setup lang="ts">
+<!-- 借助插件vite-plugin-vue-setup-extend ，可以再定义组件的name时，直接写在script上 -->
+<script setup lang="ts" name="QSelect">
 import { ref, watchEffect } from "vue"
 interface Option {
   label?: string // 选项值
@@ -181,11 +182,6 @@ function onChange(value: string | number, label: string, index: number) {
     emits("change", value, label, index)
   }
   showOptions.value = false
-}
-</script>
-<script lang="ts">
-export default {
-  name: "q-select",
 }
 </script>
 <style lang="scss" scoped>

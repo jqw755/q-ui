@@ -7,7 +7,7 @@ titleTemplate: 组件库文档
 hero:
   name: QUI
   text: 组件库
-  tagline: 基于 Vite3 + Vue3 + TS 开发
+  tagline: 基于 Vite4 + Vue3 + TS 开发
   image:
     src: /logo.png
     alt: QUI

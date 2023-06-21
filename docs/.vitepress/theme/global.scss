@@ -1,46 +1,46 @@
 /**
- * Colors 在 theme/global.scss 中写入样式，以下样式皆源自 vite 官网项目中使用的全局样式，并稍加修改
+ * Colors 在 theme/global.scss 中写入样式，以下样式皆源自 vite 官网项目中使用的全局样式，稍加修改
  * -------------------------------------------------------------------------- */
 
-// :root {
-//   --vp-c-brand: #646cff;
-//   --vp-c-brand-light: #747bff;
-//   --vp-c-brand-lighter: #9499ff;
-//   --vp-c-brand-lightest: #bcc0ff;
-//   --vp-c-brand-dark: #535bf2;
-//   --vp-c-brand-darker: #454ce1;
-//   --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
-//   --c-brand: #646cff;
-//   --c-brand-light: #747bff;
-// }
+:root {
+  --vp-c-brand: #4caf50;
+  --vp-c-brand-light: #61c565;
+  --vp-c-brand-lighter: #82dd86;
+  --vp-c-brand-lightest: #a8ebab;
+  --vp-c-brand-dark: #1abd1f;
+  --vp-c-brand-darker: #20b625;
+  --vp-c-brand-dimm: rgba(100, 108, 255, 0.08);
+  --c-brand: #4caf50;
+  --c-brand-light: #61c565;
+}
 
 /**
  * Component: Button
  * -------------------------------------------------------------------------- */
 
-// :root {
-//   --vp-button-brand-border: var(--vp-c-brand-light);
-//   --vp-button-brand-text: var(--vp-c-white);
-//   --vp-button-brand-bg: var(--vp-c-brand);
-//   --vp-button-brand-hover-border: var(--vp-c-brand-light);
-//   --vp-button-brand-hover-text: var(--vp-c-white);
-//   --vp-button-brand-hover-bg: var(--vp-c-brand-light);
-//   --vp-button-brand-active-border: var(--vp-c-brand-light);
-//   --vp-button-brand-active-text: var(--vp-c-white);
-//   --vp-button-brand-active-bg: var(--vp-button-brand-bg);
-// }
+:root {
+  --vp-button-brand-border: var(--vp-c-brand-light);
+  --vp-button-brand-text: var(--vp-c-white);
+  --vp-button-brand-bg: var(--vp-c-brand);
+  --vp-button-brand-hover-border: var(--vp-c-brand-light);
+  --vp-button-brand-hover-text: var(--vp-c-white);
+  --vp-button-brand-hover-bg: var(--vp-c-brand-light);
+  --vp-button-brand-active-border: var(--vp-c-brand-light);
+  --vp-button-brand-active-text: var(--vp-c-white);
+  --vp-button-brand-active-bg: var(--vp-button-brand-bg);
+}
 
 /**
  * Component: Home
  * -------------------------------------------------------------------------- */
 
-// :root {
-//   --vp-home-hero-name-color: transparent;
-//   --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #bd34fe 30%, #41d1ff);
+:root {
+  --vp-home-hero-name-color: transparent;
+  --vp-home-hero-name-background: -webkit-linear-gradient(120deg, #61c565 30%, #4caf50);
 
-//   --vp-home-hero-image-background-image: linear-gradient(-45deg, #bd34fe 50%, #47caff 50%);
-//   --vp-home-hero-image-filter: blur(40px);
-// }
+  --vp-home-hero-image-background-image: linear-gradient(-45deg, #61c565 50%, #4caf50 50%);
+  --vp-home-hero-image-filter: blur(40px);
+}
 
 // @media (min-width: 640px) {
 //   :root {
@@ -58,17 +58,17 @@
 //  * Component: Custom Block
 //  * -------------------------------------------------------------------------- */
 
-// :root {
-//   --vp-custom-block-tip-border: var(--vp-c-brand);
-//   --vp-custom-block-tip-text: var(--vp-c-brand-darker);
-//   --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
-// }
+:root {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-darker);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
 
-// .dark {
-//   --vp-custom-block-tip-border: var(--vp-c-brand);
-//   --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
-//   --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
-// }
+.dark {
+  --vp-custom-block-tip-border: var(--vp-c-brand);
+  --vp-custom-block-tip-text: var(--vp-c-brand-lightest);
+  --vp-custom-block-tip-bg: var(--vp-c-brand-dimm);
+}
 
 /**
  * VitePress: Custom fix
@@ -82,58 +82,63 @@
 
 */
 
-// .dark .vp-doc a,
-// .dark .vp-doc a > code,
-// .dark .VPNavBarMenuLink.VPNavBarMenuLink:hover,
-// .dark .VPNavBarMenuLink.VPNavBarMenuLink.active,
-// .dark .link.link:hover,
-// .dark .link.link.active,
-// .dark .edit-link-button.edit-link-button,
-// .dark .pager-link .title {
-//   color: var(--vp-c-brand-lighter);
-// }
+.dark .vp-doc a,
+.dark .vp-doc a > code,
+.dark .VPNavBarMenuLink.VPNavBarMenuLink:hover,
+.dark .VPNavBarMenuLink.VPNavBarMenuLink.active,
+.dark .link.link:hover,
+.dark .link.link.active,
+.dark .edit-link-button.edit-link-button,
+.dark .pager-link .title {
+  color: var(--vp-c-brand-lighter);
+}
 
-// .dark .vp-doc a:hover,
-// .dark .vp-doc a > code:hover {
-//   color: var(--vp-c-brand-lightest);
-//   opacity: 1;
-// }
-// .vp-doc a {
-//   font-weight: normal;
-// }
-// .vp-doc p {
-//   margin: 0;
-// }
+.dark .vp-doc a:hover,
+.dark .vp-doc a > code:hover {
+  color: var(--vp-c-brand-lightest);
+  opacity: 1;
+}
+.vp-doc a {
+  font-weight: normal;
+}
+.vp-doc p {
+  margin: 0;
+}
+
 /* Transition by color instead of opacity */
-// .dark .vp-doc .custom-block a {
-//   transition: color 0.25s;
-// }
-// a:hover {
-//   text-decoration: none !important;
-// }
-// summary {
-//   font-weight: 600;
-//   &:hover {
-//     cursor: pointer;
-//     color: var(--vp-c-brand-lighter);
-//   }
-// }
-// svg {
-//   fill: var(--vp-c-text-1);
-// }
-// .VPNavBarTitle .title {
-//   transition: all 0.25s;
-//   &:hover {
-//     color: var(--vp-c-brand);
-//   }
-// }
+.dark .vp-doc .custom-block a {
+  transition: color 0.25s;
+}
+a:hover {
+  text-decoration: none !important;
+}
+
+summary {
+  font-weight: 600;
+  &:hover {
+    cursor: pointer;
+    color: var(--vp-c-brand-lighter);
+  }
+}
+
+svg {
+  fill: var(--vp-c-text-1);
+}
+
+.VPNavBarTitle .title {
+  transition: all 0.25s;
+  &:hover {
+    color: var(--vp-c-brand);
+  }
+}
+
 .version-tag {
   font-size: 14px;
   line-height: 1.571;
   font-weight: bold;
   padding: 4px 6px;
   margin-left: 6px;
-  background: #bd34fe;
+  background: var(--vp-c-brand);
   color: #fff;
   border-radius: 10px;
   display: inline-block;
@@ -144,6 +149,6 @@
 .container .image .image-container .image-bg {
   height: 180px;
   transform: translate(-50%, 30%);
-  background-image: linear-gradient(-45deg, #10b981 50%, #47caff 50%);
+  background-image: linear-gradient(-45deg, var(--vp-c-brand) 50%, var(--vp-c-brand-lightest) 50%);
   filter: blur(72px);
 }

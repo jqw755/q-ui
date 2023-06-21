@@ -22,7 +22,8 @@
     <div class="assist"></div>
   </div>
 </template>
-<script setup lang="ts">
+<!-- 借助插件vite-plugin-vue-setup-extend ，可以再定义组件的name时，直接写在script上 -->
+<script setup lang="ts" name="QBreadcrumb">
 import { computed } from "vue"
 interface Query {
   [propName: string]: any // 添加一个字符串索引签名，用于包含带有任意数量的其他属性
@@ -64,12 +65,6 @@ const getUrl = (route: IRoute) => {
     })
   }
   return targetUrl
-}
-</script>
-
-<script lang="ts">
-export default {
-  name: "q-breadcrumb",
 }
 </script>
 <style lang="scss" scoped>

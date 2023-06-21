@@ -4,7 +4,8 @@
     <slot> {{ type }} </slot>
   </button>
 </template>
-<script setup lang="ts">
+<!-- 借助插件vite-plugin-vue-setup-extend ，可以再定义组件的name时，直接写在script上 -->
+<script setup lang="ts" name="QButton">
 import { computed } from "vue"
 // props
 const props = defineProps({
@@ -47,13 +48,6 @@ const classes = computed(() => {
   }
 })
 </script>
-
-<script lang="ts">
-export default {
-  name: "QButton",
-}
-</script>
-
 <style lang="scss" scoped>
 @import "./index.scss";
 </style>
