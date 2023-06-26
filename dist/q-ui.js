@@ -1,4 +1,4 @@
-import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, unref, createCommentVNode, renderSlot, createTextVNode, toDisplayString, ref, watchEffect, normalizeStyle, createElementVNode, createVNode, Transition, withCtx, withDirectives, Fragment, renderList, vShow, pushScopeId, popScopeId } from "vue";
+import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, unref, createCommentVNode, renderSlot, createTextVNode, toDisplayString, ref, watchEffect, normalizeStyle, createElementVNode, withModifiers, createVNode, Transition, withCtx, withDirectives, Fragment, renderList, vShow, pushScopeId, popScopeId } from "vue";
 const index = "";
 function dateFormat(time = Date.now(), fmt = "yyyy-MM-dd hh:mm:ss") {
   let date = new Date(time);
@@ -171,10 +171,18 @@ const QButton = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-
 QButton.install = (app) => {
   app.component(QButton.name, QButton);
 };
-const _withScopeId$1 = (n) => (pushScopeId("data-v-c0b21cdb"), n = n(), popScopeId(), n);
+const _withScopeId$1 = (n) => (pushScopeId("data-v-67820ef2"), n = n(), popScopeId(), n);
 const _hoisted_1$1 = ["title"];
-const _hoisted_2$1 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createElementVNode("span", null, "↓", -1));
-const _hoisted_3$1 = ["title", "onMouseenter", "onClick"];
+const _hoisted_2$1 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createElementVNode("path", { d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" }, null, -1));
+const _hoisted_3$1 = [
+  _hoisted_2$1
+];
+const _hoisted_4 = ["onClick"];
+const _hoisted_5 = /* @__PURE__ */ _withScopeId$1(() => /* @__PURE__ */ createElementVNode("path", { d: "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z" }, null, -1));
+const _hoisted_6 = [
+  _hoisted_5
+];
+const _hoisted_7 = ["title", "onMouseenter", "onClick"];
 const __default__$1 = defineComponent({
   name: "QSelect"
 });
@@ -252,6 +260,13 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
         hoverValue.value = target ? target[props.value] : null;
       }
     }
+    function onClear() {
+      showClose.value = false;
+      selectedName.value = null;
+      hoverValue.value = null;
+      emits("update:modelValue");
+      emits("change");
+    }
     function onChange(value, label, index2) {
       if (props.modelValue !== value) {
         selectedName.value = label;
@@ -282,7 +297,21 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
             style: normalizeStyle(`line-height: ${_ctx.height - 2}px;`),
             title: selectedName.value
           }, toDisplayString(selectedName.value || _ctx.placeholder), 15, _hoisted_1$1),
-          _hoisted_2$1
+          (openBlock(), createElementBlock("svg", {
+            class: normalizeClass(["triangle", { rotate: showOptions.value, show: !showClose.value }]),
+            viewBox: "64 64 896 896",
+            "data-icon": "down",
+            "aria-hidden": "true",
+            focusable: "false"
+          }, _hoisted_3$1, 2)),
+          (openBlock(), createElementBlock("svg", {
+            onClick: withModifiers(onClear, ["stop"]),
+            class: normalizeClass(["close", { show: showClose.value }]),
+            focusable: "false",
+            "data-icon": "close-circle",
+            "aria-hidden": "true",
+            viewBox: "64 64 896 896"
+          }, _hoisted_6, 10, _hoisted_4))
         ], 38),
         createVNode(Transition, { name: "fade" }, {
           default: withCtx(() => [
@@ -306,7 +335,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
                   title: option[_ctx.label],
                   onMouseenter: ($event) => onHover(option[_ctx.value]),
                   onClick: ($event) => option.disabled ? () => false : onChange(option[_ctx.value], option[_ctx.label], index2)
-                }, toDisplayString(option[_ctx.label]), 43, _hoisted_3$1);
+                }, toDisplayString(option[_ctx.label]), 43, _hoisted_7);
               }), 128))
             ], 36), [
               [vShow, showOptions.value]
@@ -318,8 +347,8 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const index_vue_vue_type_style_index_0_scoped_c0b21cdb_lang = "";
-const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-c0b21cdb"]]);
+const index_vue_vue_type_style_index_0_scoped_67820ef2_lang = "";
+const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-67820ef2"]]);
 QSelect.install = (app) => {
   app.component(QSelect.name, QSelect);
 };
