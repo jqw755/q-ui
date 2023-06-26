@@ -1,6 +1,6 @@
 <template>
-  <div class="m-breadcrumb" :style="`height: ${height}px;`">
-    <div class="m-bread" v-for="(route, index) in routes" :key="index">
+  <div class="q-breadcrumb" :style="`height: ${height}px;`">
+    <div class="q-bread" v-for="(route, index) in routes" :key="index">
       <a
         :class="['u-route', { active: index === len - 1 }]"
         :style="`font-size: ${fontSize}px; max-width: ${maxWidth}px;`"
@@ -11,12 +11,7 @@
         {{ route.name || "--" }}
       </a>
       <template v-if="index !== len - 1">
-        <span v-if="separator" class="u-separator">{{ separator }}</span>
-        <svg v-else class="u-arrow" viewBox="64 64 896 896" data-icon="right" aria-hidden="true" focusable="false">
-          <path
-            d="M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z"
-          ></path>
-        </svg>
+        <span class="u-separator">{{ separator || ">" }}</span>
       </template>
     </div>
     <div class="assist"></div>
@@ -25,12 +20,12 @@
 <!-- 借助插件vite-plugin-vue-setup-extend ，可以再定义组件的name时，直接写在script上 -->
 <script setup lang="ts" name="QBreadcrumb">
 import { computed } from "vue"
-interface Query {
+interface IQuery {
   [propName: string]: any // 添加一个字符串索引签名，用于包含带有任意数量的其他属性
 }
 interface IRoute {
   path: string // 路由地址
-  query?: Query // 路由查询参数
+  query?: IQuery // 路由查询参数
   name: string // 路由名称
 }
 interface Props {
@@ -45,7 +40,7 @@ const props = withDefaults(defineProps<Props>(), {
   routes: () => [],
   fontSize: 14,
   height: 21,
-  maxWidth: 180,
+  maxWidth: 150,
   separator: "",
   target: "_self",
 })

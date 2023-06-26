@@ -28,7 +28,6 @@
   "homepage": "https://github.com/jqw755/q-ui#readme",
   "description": "q-ui",
   "scripts": {
-    "dev": "vite --port 9000 --open --force",
     "docs:dev": "vitepress dev docs --port 8000 --open",
     "docs:build": "vitepress build docs",
     "docs:deploy": "sh script/deploy.sh",

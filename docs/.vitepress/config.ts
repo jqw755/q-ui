@@ -75,15 +75,15 @@ export default defineConfig({
           text: "组件",
           items: [
             {
-              text: "面包屑 Breadcrumb",
-              link: "/guide/components/breadcrumb",
-            },
-            {
-              text: "按钮 Button",
+              text: "按钮 q-button",
               link: "/guide/components/button",
             },
             {
-              text: "选择器 Select",
+              text: "面包屑 q-breadcrumb",
+              link: "/guide/components/breadcrumb",
+            },
+            {
+              text: "选择器 q-select",
               link: "/guide/components/select",
             },
           ],

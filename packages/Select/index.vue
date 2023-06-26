@@ -1,7 +1,7 @@
 <template>
-  <div class="m-select" :style="`height: ${height}px;`">
+  <div class="q-select" :style="`height: ${height}px;`">
     <div
-      :class="['m-select-wrap', { hover: !disabled, focus: showOptions, disabled: disabled }]"
+      :class="['q-select-wrap', { hover: !disabled, focus: showOptions, disabled: disabled }]"
       :style="`width: ${width}px; height: ${height}px;`"
       tabindex="0"
       ref="select"
@@ -44,7 +44,7 @@
     <Transition name="fade">
       <div
         v-show="showOptions"
-        class="m-options-panel"
+        class="q-options-panel"
         @mouseenter="onEnter"
         @mouseleave="onLeave"
         :style="`top: ${height + 4}px; line-height: ${height - 10}px; max-height: ${
@@ -72,34 +72,35 @@
     </Transition>
   </div>
 </template>
+
 <!-- 借助插件vite-plugin-vue-setup-extend ，可以再定义组件的name时，直接写在script上 -->
 <script setup lang="ts" name="QSelect">
 import { ref, watchEffect } from "vue"
-interface Option {
+interface IOption {
   label?: string // 选项值
   value?: string | number // 选项名
   disabled?: boolean // 是否禁用选项
   [propName: string]: any // 添加一个字符串索引签名，用于包含带有任意数量的其他属性
 }
-interface Props {
-  options?: Option[] // 选项数据
+interface IProps {
+  options?: IOption[] // 选项数据
   label?: string // 字典项的文本字段名
   value?: string // 字典项的值字段名
   placeholder?: string // 默认文本
   disabled?: boolean // 是否禁用
-  allowClear?: boolean // 是否支持清除
+  clearable?: boolean // 是否支持清除
   width?: number // 宽度
   height?: number // 高度
   maxDisplay?: number // 下拉面板最多能展示的下拉项数，超过后滚动显示
   modelValue?: number | string | null // （v-model）当前选中的option条目
 }
-const props = withDefaults(defineProps<Props>(), {
+const props = withDefaults(defineProps<IProps>(), {
   options: () => [],
   label: "label",
   value: "value",
   placeholder: "请选择",
   disabled: false,
-  allowClear: false,
+  clearable: false,
   width: 120,
   height: 32,
   maxDisplay: 6,
@@ -137,13 +138,13 @@ function onBlur() {
 }
 function onInputEnter() {
   // console.log('input enter')
-  if (props.allowClear && selectedName.value) {
+  if (props.clearable && selectedName.value) {
     showClose.value = true
   }
 }
 function onInputLeave() {
   // console.log('input leave')
-  if (props.allowClear && showClose.value) {
+  if (props.clearable && showClose.value) {
     showClose.value = false
   }
 }

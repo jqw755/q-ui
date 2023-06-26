@@ -1,118 +1,41 @@
 # 选择器 QSelect
 
-## 何时使用
-
-- 弹出一个下拉菜单给用户选择操作，用于代替原生的选择器，或者需要一个更优雅的多选器时
-- 当选项少时（少于 5 项），建议直接将选项平铺，使用 Radio 是更好的选择
-
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
 const options = ref([
-      {
-        label: '北京市',
-        value: 1
-      },
-      {
-        label: '上海市',
-        value: 2
-      },
-      {
-        label: '纽约市',
-        value: 3
-      },
-      {
-        label: '旧金山',
-        value: 4
-      },
-      {
-        label: '布宜诺斯艾利斯',
-        value: 5
-      },
-      {
-        label: '伊斯坦布尔',
-        value: 6
-      },
-      {
-        label: '拜占庭',
-        value: 7
-      },
-      {
-        label: '君士坦丁堡',
-        value: 8
-      }
-    ])
+  {
+    label: '北京市',
+    value: 1
+  },
+  {
+    label: '上海市',
+    value: 2
+  },
+])
 const optionsDisabled = ref([
-      {
-        label: '北京市',
-        value: 1
-      },
-      {
-        label: '上海市',
-        value: 2,
-        disabled: true
-      },
-      {
-        label: '纽约市',
-        value: 3
-      },
-      {
-        label: '旧金山',
-        value: 4
-      },
-      {
-        label: '布宜诺斯艾利斯',
-        value: 5
-      },
-      {
-        label: '伊斯坦布尔',
-        value: 6
-      },
-      {
-        label: '拜占庭',
-        value: 7
-      },
-      {
-        label: '君士坦丁堡',
-        value: 8
-      }
-    ])
+  {
+    label: '北京市',
+    value: 1
+  },
+  {
+    label: '上海市',
+    value: 2,
+    disabled: true
+  },
+])
 const optionsCustom = ref([
-      {
-        name: '北京市',
-        id: 1
-      },
-      {
-        name: '上海市',
-        id: 2
-      },
-      {
-        name: '纽约市',
-        id: 3
-      },
-      {
-        name: '旧金山',
-        id: 4
-      },
-      {
-        name: '布宜诺斯艾利斯',
-        id: 5
-      },
-      {
-        name: '伊斯坦布尔',
-        id: 6
-      },
-      {
-        name: '拜占庭',
-        id: 7
-      },
-      {
-        name: '君士坦丁堡',
-        id: 8
-      }
-    ])
-const QSelectedValue = ref(1)
+  {
+    name: '北京市',
+    id: 1
+  },
+  {
+    name: '上海市',
+    id: 2
+  },
+])
+const selVal = ref(1)
 watchEffect(() => {
-  console.log('QSelectedValue:', QSelectedValue.value)
+  console.log('选中的值:', selVal.value)
 })
 function onChange (value: string|number, label: string,  index: number) {
   console.log('value:', value)
@@ -123,7 +46,7 @@ function onChange (value: string|number, label: string,  index: number) {
 
 ## 基本使用
 
-<QSelect :options="options" v-model="QSelectedValue" />
+<QSelect :options="options" clearable v-model="selVal" />
 
 ::: details Show Code
 
@@ -139,38 +62,14 @@ const options = ref([
     label: "上海市",
     value: 2,
   },
-  {
-    label: "纽约市",
-    value: 3,
-  },
-  {
-    label: "旧金山",
-    value: 4,
-  },
-  {
-    label: "布宜诺斯艾利斯",
-    value: 5,
-  },
-  {
-    label: "伊斯坦布尔",
-    value: 6,
-  },
-  {
-    label: "拜占庭",
-    value: 7,
-  },
-  {
-    label: "君士坦丁堡",
-    value: 8,
-  },
 ])
-const QSelectedValue = ref(1)
+const selVal = ref(1)
 watchEffect(() => {
-  console.log("QSelectedValue:", QSelectedValue.value)
+  console.log("选中的值:", selVal.value)
 })
 </script>
 <template>
-  <QSelect :options="options" v-model="QSelectedValue" />
+  <QSelect :options="options" v-model="selVal" />
 </template>
 ```
 
@@ -178,7 +77,7 @@ watchEffect(() => {
 
 ## 禁用
 
-<QSelect :options="options" v-model="QSelectedValue" disabled />
+<QSelect :options="options" v-model="selVal" disabled />
 
 ::: details Show Code
 
@@ -190,39 +89,11 @@ const options = ref([
     label: "北京市",
     value: 1,
   },
-  {
-    label: "上海市",
-    value: 2,
-  },
-  {
-    label: "纽约市",
-    value: 3,
-  },
-  {
-    label: "旧金山",
-    value: 4,
-  },
-  {
-    label: "布宜诺斯艾利斯",
-    value: 5,
-  },
-  {
-    label: "伊斯坦布尔",
-    value: 6,
-  },
-  {
-    label: "拜占庭",
-    value: 7,
-  },
-  {
-    label: "君士坦丁堡",
-    value: 8,
-  },
 ])
-const QSelectedValue = ref(1)
+const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="options" v-model="QSelectedValue" disabled />
+  <QSelect :options="options" v-model="selVal" disabled />
 </template>
 ```
 
@@ -232,7 +103,7 @@ const QSelectedValue = ref(1)
 
 <QSelect
   :options="optionsDisabled"
-  v-model="QSelectedValue" />
+  v-model="selVal" />
 
 ::: details Show Code
 
@@ -249,99 +120,11 @@ const optionsDisabled = ref([
     value: 2,
     disabled: true,
   },
-  {
-    label: "纽约市",
-    value: 3,
-  },
-  {
-    label: "旧金山",
-    value: 4,
-  },
-  {
-    label: "布宜诺斯艾利斯",
-    value: 5,
-  },
-  {
-    label: "伊斯坦布尔",
-    value: 6,
-  },
-  {
-    label: "拜占庭",
-    value: 7,
-  },
-  {
-    label: "君士坦丁堡",
-    value: 8,
-  },
 ])
-const QSelectedValue = ref(1)
+const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="optionsDisabled" v-model="QSelectedValue" />
-</template>
-```
-
-:::
-
-## 支持清除
-
-<QSelect
-:options="options"
-allow-clear
-v-model="QSelectedValue"
-@change="onChange" />
-
-::: details Show Code
-
-```vue
-<script setup lang="ts">
-import { ref, watchEffect } from "vue"
-const options = ref([
-  {
-    label: "北京市",
-    value: 1,
-  },
-  {
-    label: "上海市",
-    value: 2,
-  },
-  {
-    label: "纽约市",
-    value: 3,
-  },
-  {
-    label: "旧金山",
-    value: 4,
-  },
-  {
-    label: "布宜诺斯艾利斯",
-    value: 5,
-  },
-  {
-    label: "伊斯坦布尔",
-    value: 6,
-  },
-  {
-    label: "拜占庭",
-    value: 7,
-  },
-  {
-    label: "君士坦丁堡",
-    value: 8,
-  },
-])
-const QSelectedValue = ref(1)
-watchEffect(() => {
-  console.log("QSelectedValue:", QSelectedValue.value)
-})
-function onChange(value: string | number, label: string, index: number) {
-  console.log("value:", value)
-  console.log("label:", label)
-  console.log("index:", index)
-}
-</script>
-<template>
-  <QSelect :options="options" allow-clear v-model="QSelectedValue" @change="onChange" />
+  <QSelect :options="optionsDisabled" v-model="selVal" />
 </template>
 ```
 
@@ -350,17 +133,16 @@ function onChange(value: string | number, label: string, index: number) {
 ## 自定义样式
 
 <QSelect
-:width="160"
-:height="36"
+:width="180"
+:height="42"
 :options="options"
-v-model="QSelectedValue"
-@change="onChange" />
+v-model="selVal" />
 
 ::: details Show Code
 
 ```vue
 <script setup lang="ts">
-import { ref, watchEffect } from "vue"
+import { ref } from "vue"
 const options = ref([
   {
     label: "北京市",
@@ -370,43 +152,11 @@ const options = ref([
     label: "上海市",
     value: 2,
   },
-  {
-    label: "纽约市",
-    value: 3,
-  },
-  {
-    label: "旧金山",
-    value: 4,
-  },
-  {
-    label: "布宜诺斯艾利斯",
-    value: 5,
-  },
-  {
-    label: "伊斯坦布尔",
-    value: 6,
-  },
-  {
-    label: "拜占庭",
-    value: 7,
-  },
-  {
-    label: "君士坦丁堡",
-    value: 8,
-  },
 ])
-const QSelectedValue = ref(1)
-watchEffect(() => {
-  console.log("QSelectedValue:", QSelectedValue.value)
-})
-function onChange(value: string | number, label: string, index: number) {
-  console.log("value:", value)
-  console.log("label:", label)
-  console.log("index:", index)
-}
+const selVal = ref(1)
 </script>
 <template>
-  <QSelect :width="160" :height="36" :options="options" v-model="QSelectedValue" @change="onChange" />
+  <QSelect :width="180" :height="42" :options="options" v-model="selVal" />
 </template>
 ```
 
@@ -418,14 +168,14 @@ function onChange(value: string | number, label: string, index: number) {
 :options="optionsCustom"
 label="name"
 value="id"
-v-model="QSelectedValue"
+v-model="selVal"
 @change="onChange" />
 
 ::: details Show Code
 
 ```vue
 <script setup lang="ts">
-import { ref, watchEffect } from "vue"
+import { ref } from "vue"
 const optionsCustom = ref([
   {
     name: "北京市",
@@ -435,43 +185,11 @@ const optionsCustom = ref([
     name: "上海市",
     id: 2,
   },
-  {
-    name: "纽约市",
-    id: 3,
-  },
-  {
-    name: "旧金山",
-    id: 4,
-  },
-  {
-    name: "布宜诺斯艾利斯",
-    id: 5,
-  },
-  {
-    name: "伊斯坦布尔",
-    id: 6,
-  },
-  {
-    name: "拜占庭",
-    id: 7,
-  },
-  {
-    name: "君士坦丁堡",
-    id: 8,
-  },
 ])
-const QSelectedValue = ref(1)
-watchEffect(() => {
-  console.log("QSelectedValue:", QSelectedValue.value)
-})
-function onChange(id: string | number, name: string, index: number) {
-  console.log("id:", id)
-  console.log("name:", label)
-  console.log("index:", index)
-}
+const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="optionsCustom" label="name" value="id" v-model="QSelectedValue" @change="onChange" />
+  <QSelect :options="optionsCustom" label="name" value="id" v-model="selVal" />
 </template>
 ```
 
@@ -481,15 +199,15 @@ function onChange(id: string | number, name: string, index: number) {
 
 <QSelect
 :options="options"
-:max-display="8"
-v-model="QSelectedValue"
+:max-display="1"
+v-model="selVal"
 @change="onChange" />
 
 ::: details Show Code
 
 ```vue
 <script setup lang="ts">
-import { ref, watchEffect } from "vue"
+import { ref } from "vue"
 const options = ref([
   {
     label: "北京市",
@@ -499,43 +217,11 @@ const options = ref([
     label: "上海市",
     value: 2,
   },
-  {
-    label: "纽约市",
-    value: 3,
-  },
-  {
-    label: "旧金山",
-    value: 4,
-  },
-  {
-    label: "布宜诺斯艾利斯",
-    value: 5,
-  },
-  {
-    label: "伊斯坦布尔",
-    value: 6,
-  },
-  {
-    label: "拜占庭",
-    value: 7,
-  },
-  {
-    label: "君士坦丁堡",
-    value: 8,
-  },
 ])
-const QSelectedValue = ref(1)
-watchEffect(() => {
-  console.log("QSelectedValue:", QSelectedValue.value)
-})
-function onChange(value: string | number, label: string, index: number) {
-  console.log("value:", value)
-  console.log("label:", label)
-  console.log("index:", index)
-}
+const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="options" :max-display="8" v-model="QSelectedValue" @change="onChange" />
+  <QSelect :options="options" :max-display="1" v-model="selVal" />
 </template>
 ```
 
@@ -543,18 +229,18 @@ function onChange(value: string | number, label: string, index: number) {
 
 ## APIs
 
-| 参数                | 说明                                         | 类型                             | 默认值   | 必传  |
-| ------------------- | -------------------------------------------- | -------------------------------- | -------- | ----- |
-| options             | 选项数据                                     | Option[]                         | []       | false |
-| label               | 字典项的文本字段名                           | string                           | 'label'  | false |
-| value               | 字典项的值字段名                             | string                           | 'value'  | false |
-| placeholder         | 默认文字                                     | string                           | '请选择' | false |
-| disabled            | 是否禁用                                     | boolean                          | false    | false |
-| allowClear          | 是否支持清除                                 | boolean                          | false    | false |
-| width               | 宽度                                         | number                           | 120      | false |
-| height              | 高度                                         | number                           | 32       | false |
-| maxDisplay          | 下拉面板最多能展示的下拉项数，超过后滚动显示 | number                           | 6        | false |
-| modelValue(v-model) | 当前选中的 option 条目                       | number &#124; string &#124; null | null     | false |
+| 参数                | 说明                                     | 类型                             | 默认值   | 必传  |
+| ------------------- | ---------------------------------------- | -------------------------------- | -------- | ----- |
+| modelValue(v-model) | 当前选中的 option 条目                   | number &#124; string &#124; null | null     | false |
+| options             | 选项数据                                 | Option[]                         | []       | false |
+| label               | 字典项的文本字段名                       | string                           | 'label'  | false |
+| value               | 字典项的值字段名                         | string                           | 'value'  | false |
+| placeholder         | 默认文字                                 | string                           | '请选择' | false |
+| disabled            | 是否禁用                                 | boolean                          | false    | false |
+| clearable           | 是否支持清除                             | boolean                          | false    | false |
+| width               | 宽度                                     | number                           | 120      | false |
+| height              | 高度                                     | number                           | 32       | false |
+| maxDisplay          | 下拉菜单最多展示的下拉项数，超出滚动显示 | number                           | 7        | false |
 
 ## Option Type
 

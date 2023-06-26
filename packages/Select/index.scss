@@ -1,4 +1,4 @@
-.m-select {
+.q-select {
   position: relative;
   display: inline-block;
   font-size: 14px;
@@ -8,20 +8,20 @@
 .fade-enter-active,
 .fade-leave-active {
   transform: scaleY(1);
-  transform-origin: 0% 0%;
+  transforq-origin: 0% 0%;
   opacity: 1;
   transition: all 0.3s;
 }
 .fade-enter-from {
   transform: scaleY(0.8);
-  transform-origin: 0% 0%;
+  transforq-origin: 0% 0%;
   opacity: 0;
 }
 .fade-leave-to {
   transform: scaleY(1);
   opacity: 0;
 }
-.m-select-wrap {
+.q-select-wrap {
   position: relative;
   z-index: 8;
   display: inline-block;
@@ -99,7 +99,7 @@
   user-select: none;
   cursor: not-allowed;
 }
-.m-options-panel {
+.q-options-panel {
   position: absolute;
   z-index: 9;
   overflow: auto;

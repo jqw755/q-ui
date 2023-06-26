@@ -2,7 +2,7 @@
 
 ## 简要介绍
 
-开箱即用！
+常用的 js 函数
 
 ## 使用方式
 
@@ -12,16 +12,11 @@ import { dateFormat, throttle, debounce, downloadFile } from "@jqw755/q-ui"
 </script>
 ```
 
-## 一共 9 个常用工具函数
+## 目前收录 4 个常用函数
 
-| Function name         | Descriptions                                                                        | Arguments                                                                           |
-| --------------------- | :---------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
-| dateFormat            | 简单易用的日期格式化函数！                                                          | (timestamp: number&#124;string&#124;Date, format = 'YYYY-MM-DD HH:mm:ss') => string |
-| requestAnimationFrame | 针对不同浏览器进行兼容处理！                                                        | 使用方式不变                                                                        |
-| cancelAnimationFrame  | 针对不同浏览器进行兼容处理！                                                        | 使用方式不变                                                                        |
-| rafTimeout            | 使用 requestAnimationFrame 实现的定时器函数，等效替代 (setTimeout 和 setInterval)！ | (func: Function, delay = 0, interval = false) => object                             |
-| cancelRaf             | 用于取消 rafTimeout 函数！                                                          | (raf: { id: number }) => void                                                       |
-| throttle              | 使用 rafTimeout 实现的节流函数！                                                    | (fn: Function, delay = 300) => any                                                  |
-| debounce              | 使用 rafTimeout 实现的防抖函数！                                                    | (fn: Function, delay = 300) => any                                                  |
-| add                   | 消除 js 加减精度问题的加法函数！                                                    | (num1: number, num2: number) => number                                              |
-| downloadFile          | 下载文件并自定义文件名，未传 name 时，从文件地址中自动获取文件名称                  | (url: string, name: string) => void                                                 |
+| 函数名       | 描述                                                               | 参数                                                                                |
+| ------------ | :----------------------------------------------------------------- | :---------------------------------------------------------------------------------- |
+| dateFormat   | 日期格式化函数                                                     | (timestamp: number&#124;string&#124;Date, format = 'YYYY-MM-DD HH:mm:ss') => string |
+| throttle     | 使用 setTimeout 实现的节流函数                                     | (fn: Function, delay = 300) => any                                                  |
+| debounce     | 使用 setTimeout 实现的防抖函数                                     | (fn: Function, delay = 300) => any                                                  |
+| downloadFile | 下载文件并自定义文件名，未传文件名时，从文件地址中自动获取文件名称 | (url: string, name: string) => void                                                 |

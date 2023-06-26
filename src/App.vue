@@ -1,10 +1,8 @@
 <script setup lang="ts">
 import { RouterView } from "vue-router"
-import topNav from "./components/TopNav.vue"
 </script>
 
 <template>
-  <top-nav />
   <div class="app-container">
     <RouterView />
   </div>

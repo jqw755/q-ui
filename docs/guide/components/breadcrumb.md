@@ -1,38 +1,28 @@
-# 面包屑 QBreadcrumb
-
-<br/>
-
-_显示当前页面在系统层级结构中的位置，并能向上返回_
-
-## 何时使用
-
-- 当系统拥有超过两级以上的层级结构时
-- 当需要告知用户『你在哪里』时
-- 当需要向上导航的功能时
+# 面包屑 q-breadcrumb
 
 <script setup lang="ts">
 const routes = [
-    {
-      path: '/first', // 路由地址
-      query: { id: 1, tab: 2 }, // 路由参数
-      name: '一级路由' // 路由名称
-    },
-    {
-      path: '/second',
-      name: '二级路由'
-    },
-    {
-      path: '/third',
-      name: '三级路由三级路由三级路由三级路由'
-    }
-  ]
+  {
+    path: '/first', // 路由地址
+    query: { id: 1, tab: 2 }, // 路由参数
+    name: '一级路由' // 路由名称
+  },
+  {
+    path: '/second',
+    name: '二级路由'
+  },
+  {
+    path: '/third',
+    name: '三级路由三级路由'
+  }
+]
 </script>
 
 ## 基本使用
 
-<QBreadcrumb :routes="routes" />
+<q-breadcrumb :routes="routes" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -53,7 +43,7 @@ const routes = [
 ]
 </script>
 <template>
-  <QBreadcrumb :routes="routes" />
+  <q-breadcrumb :routes="routes" />
 </template>
 ```
 
@@ -61,9 +51,9 @@ const routes = [
 
 ## 自定义分隔符
 
-<QBreadcrumb :routes="routes" separator="/" />
+<q-breadcrumb :routes="routes" separator="/" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -84,7 +74,7 @@ const routes = [
 ]
 </script>
 <template>
-  <QBreadcrumb :routes="routes" separator="/" />
+  <q-breadcrumb :routes="routes" separator="/" />
 </template>
 ```
 
@@ -92,9 +82,9 @@ const routes = [
 
 ## 自定义样式
 
-<QBreadcrumb :routes="routes" :font-size="16" />
+<q-breadcrumb :routes="routes" :font-size="20" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -115,7 +105,7 @@ const routes = [
 ]
 </script>
 <template>
-  <QBreadcrumb :routes="routes" :font-size="16" />
+  <q-breadcrumb :routes="routes" :font-size="16" />
 </template>
 ```
 
@@ -123,9 +113,9 @@ const routes = [
 
 ## 新页面打开目标链接
 
-<QBreadcrumb :routes="routes" target="_blank" />
+<q-breadcrumb :routes="routes" target="_blank" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -146,7 +136,7 @@ const routes = [
 ]
 </script>
 <template>
-  <QBreadcrumb :routes="routes" target="_blank" />
+  <q-breadcrumb :routes="routes" target="_blank" />
 </template>
 ```
 
@@ -159,9 +149,9 @@ const routes = [
 | routes    | 路由数组                                    | Route[]                   | []       | true  |
 | fontSize  | 字体大小，单位 px                           | number                    | 14       | false |
 | height    | 面包屑高度                                  | number                    | 36       | false |
-| maxWidth  | 文本最大显示宽度，超出后显示省略号，单位 px | 180                       | false    |
+| maxWidth  | 文本最大显示宽度，超出后显示省略号，单位 px | 150                       | false    |
 | separator | 分隔符，默认''时为箭头                      | string                    | ''       | false |
-| target    | 如何打开目标 URL                            | '\_self' &#124; '\_blank' | '\_self' | false |
+| target    | 在何处打开目标 URL                          | '\_self' &#124; '\_blank' | '\_self' | false |
 
 ## Route Type
 
