@@ -2,27 +2,27 @@
 
 <br/>
 
-_对于短时间内连续触发的事件，防抖就是让某个时间（delay）期限内，事件处理函数只执行一次_
+_对于短时间内连续触发的事件，在 delay 时间内函数只执行最后一次_
 
-::: details Show Source Code
+::: details Code
 
 ```ts
-function debounce(fn: Function, delay = 300): any {
-  let timer: any = null //借助闭包
+export function debounce(fn: Function, delay = 300): any {
+  // timer 是在闭包中的
+  let timer: number | null
   return function () {
     if (timer) {
-      cancelRaf(timer)
+      clearTimeout(timer)
     }
-    timer = rafTimeout(fn, delay)
+    timer = setTimeout(() => {
+      fn()
+      timer = null
+    }, delay)
   }
 }
 ```
 
 :::
-
-## 何时使用
-
-- 对于短时间内连续触发的事件，在 delay ms 内函数只执行最后一次
 
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'

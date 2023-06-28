@@ -8,9 +8,10 @@
   <q-button :class="$style['mr10']" type="success" >Success</q-button>
   <q-button :class="$style['mr10']" type="info" >Info</q-button>
   <q-button :class="$style['mr10']" type="warning" >Warning</q-button>
-  <q-button :class="$style['mr10']" type="error" >Error</q-button>
+  <q-button :class="$style['mr10']" type="error" >
+    <q-icon name="q-icon-delete" color="#fff"/> <span>Error</span>
+  </q-button>
   <q-button :class="$style['mr10']" loading >Loading</q-button>
-  <q-button  disabled >Disabled</q-button>
 </div>
 
 ::: details code
@@ -22,14 +23,31 @@ function onClick(e: Event) {
 }
 </script>
 <template>
-  <q-button @click="onClick">Default</q-button>
-  <q-button type="primary">Primary</q-button>
-  <q-button type="success">Success</q-button>
-  <q-button type="info">Info</q-button>
-  <q-button type="warning">Warning</q-button>
-  <q-button type="error">Error</q-button>
-  <q-button loading>Loading</q-button>
-  <q-button disabled>Disabled</q-button>
+  <q-button :class="$style['mr10']" @click="onClick">Default</q-button>
+  <q-button :class="$style['mr10']" type="primary">Primary</q-button>
+  <q-button :class="$style['mr10']" type="success">Success</q-button>
+  <q-button :class="$style['mr10']" type="info">Info</q-button>
+  <q-button :class="$style['mr10']" type="warning">Warning</q-button>
+  <q-button :class="$style['mr10']" type="error">
+    <q-icon name="q-icon-delete" color="#fff" /> <span>Error</span>
+  </q-button>
+  <q-button :class="$style['mr10']" loading>Loading</q-button>
+</template>
+```
+
+:::
+
+## 禁用状态
+
+<div>
+  <q-button :class="$style['mr10']" disabled >Disabled</q-button>
+</div>
+
+::: details Code
+
+```vue
+<template>
+  <q-button :class="$style['mr10']" disabled>Disabled</q-button>
 </template>
 ```
 
@@ -54,7 +72,7 @@ function onClick(e: Event) {
 <template>
   <q-button size="small">Small</q-button>
   <q-button>Default</q-button>
-  <q-button size="large">Large</q-button>
+  <q-button size="large" @click="onClick">Large</q-button>
 </template>
 ```
 

@@ -1,6 +1,6 @@
 # 下载文件
 
-::: details Show Source Code
+::: details Code
 
 ```ts
 function downloadFile(url: string, name: string) {
@@ -33,10 +33,6 @@ function downloadFile(url: string, name: string) {
 ```
 
 :::
-
-## 何时使用
-
-- 下载文件并自定义文件名时
 
 ## 基本使用
 

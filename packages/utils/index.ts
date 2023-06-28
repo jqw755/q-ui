@@ -24,16 +24,16 @@ export function dateFormat(time: number | string | Date = Date.now(), fmt = "yyy
 }
 
 // 节流函数throttle
-export function throttle(fn: Function, delay = 300): any {
-  let timer: number | null
-  return function () {
-    if (timer) {
-      return
+export function throttle(fn: Function, deplay = 300): any {
+  let timer: any = null
+  return function (this: unknown, ...args: any[]) {
+    const context = this
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null
+        fn.apply(context, args)
+      }, deplay)
     }
-    timer = setTimeout(() => {
-      fn()
-      timer = null
-    }, delay)
   }
 }
 // 防抖函数debounce

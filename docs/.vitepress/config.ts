@@ -75,6 +75,10 @@ export default defineConfig({
           text: "组件",
           items: [
             {
+              text: "图标 q-icon",
+              link: "/guide/components/icon",
+            },
+            {
               text: "按钮 q-button",
               link: "/guide/components/button",
             },

@@ -2,31 +2,26 @@
 
 <br/>
 
-_如果短时间内大量触发同一事件，那么在函数执行一次之后，该函数在指定的时间（delay）期限内不再工作，直至过了这段时间才重新生效_
+_高频触发同一事件，在函数执行一次之后，该函数每隔指定时间（delay）执行一次_
 
-::: details Show Source Code
+::: details Code
 
 ```ts
-function throttle(fn: Function, delay = 300): any {
-  var valid = true
-  return function () {
-    if (valid) {
-      valid = false // 将函数置为无效
-      rafTimeout(() => {
-        fn()
-        valid = true
-      }, delay)
+export function throttle(fn: Function, deplay = 300): any {
+  let timer: any = null
+  return function (this: unknown, ...args: any[]) {
+    const context = this
+    if (!timer) {
+      timer = setTimeout(() => {
+        timer = null
+        fn.apply(context, args)
+      }, deplay)
     }
-    return false // valid为false时，函数不执行
   }
 }
 ```
 
 :::
-
-## 何时使用
-
-- 短时间内大量触发同一事件时，每 delay ms 内函数只执行一次
 
 <script setup lang="ts">
 import { onMounted, onUnmounted } from 'vue'

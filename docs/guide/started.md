@@ -23,7 +23,7 @@ import { createApp } from "vue"
 import App from "./App.vue"
 
 import QUI from "@jqw755/q-ui"
-import "@jqw755/q-ui/css"
+// import "@jqw755/q-ui/css"
 
 const app = createApp(App)
 app.use(QUI)
@@ -35,5 +35,5 @@ app.mount("#app")
 
 ```ts
 import { QButton } from "@jqw755/q-ui"
-import "@jqw755/q-ui/css"
+// import "@jqw755/q-ui/css"
 ```
