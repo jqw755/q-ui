@@ -1,0 +1,71 @@
+@font-face {
+  font-family: "qIconfont"; /* Project id 1837560 */
+  src: url('iconfont.woff2?t=1687942685616') format('woff2'),
+       url('iconfont.woff?t=1687942685616') format('woff'),
+       url('iconfont.ttf?t=1687942685616') format('truetype');
+}
+
+.qIconfont {
+  font-family: "qIconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.q-icon-close:before {
+  content: "\e608";
+}
+
+.q-icon-refresh-left:before {
+  content: "\e613";
+}
+
+.q-icon-delete:before {
+  content: "\e609";
+}
+
+.q-icon-edit:before {
+  content: "\e665";
+}
+
+.q-icon-add:before {
+  content: "\e607";
+}
+
+.q-icon-arrow-right:before {
+  content: "\e600";
+}
+
+.q-icon-arrow-top:before {
+  content: "\e601";
+}
+
+.q-icon-arrow-bottom:before {
+  content: "\e602";
+}
+
+.q-icon-upload:before {
+  content: "\e64a";
+}
+
+.q-icon-star-off:before {
+  content: "\e60d";
+}
+
+.q-icon-image:before {
+  content: "\e619";
+}
+
+.q-icon-arrow-left:before {
+  content: "\e603";
+}
+
+.q-icon-location:before {
+  content: "\e664";
+}
+
+.q-icon-loading:before {
+  content: "\e632";
+}
+

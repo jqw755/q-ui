@@ -17,8 +17,11 @@
       >
         {{ selectedName || placeholder }}
       </div>
-      <q-icon name="q-icon-arrow-bottom" :class="['triangle', { rotate: showOptions, show: !showClose }]" />
-      <q-icon name="q-icon-close" :class="['close', { show: showClose }]" @click.stop="onClear" />
+      <q-icon
+        name="q-icon-arrow-bottom"
+        :class="['selec-q-icon triangle', { rotate: showOptions, show: !showClose }]"
+      />
+      <q-icon name="q-icon-close" :class="['selec-q-icon close', { show: showClose }]" @click.stop="onClear" />
     </div>
     <Transition name="fade">
       <div

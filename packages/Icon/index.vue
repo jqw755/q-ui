@@ -1,12 +1,12 @@
 <template>
-  <svg class="icon" :style="{ color: color, fontSize: size + 'px' }" aria-hidden="true">
+  <!-- <svg class="icon" :style="{ color: color, fontSize: size + 'px' }" aria-hidden="true">
     <use :xlink:href="iconName"></use>
-  </svg>
+  </svg> -->
+  <i :class="['qIconfont', name]" :style="{ color: color, fontSize: size + 'px' }"></i>
 </template>
 
 <script setup lang="ts" name="QIcon">
-import { computed } from "vue"
-import "./iconfont"
+// import "./iconfont.js"   // 不使用Symbol了，因为生成的iconfont.js中使用了window对象。vitepress打包时报错。暂时没有解决该问题。使用font class方案
 const props = defineProps({
   name: String,
   color: {
@@ -18,11 +18,10 @@ const props = defineProps({
     default: "14",
   },
 })
-
-const iconName = computed(() => {
-  return `#${props.name}`
-})
 </script>
 <style>
-@import "./index.scss";
+@import "./font/iconfont.css";
+.qIconfont {
+  display: inline-block;
+}
 </style>

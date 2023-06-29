@@ -48,7 +48,7 @@ function onChange (value: string|number, label: string,  index: number) {
 
 <QSelect :options="options" clearable v-model="selVal" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -79,7 +79,7 @@ watchEffect(() => {
 
 <QSelect :options="options" v-model="selVal" disabled />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -105,7 +105,7 @@ const selVal = ref(1)
   :options="optionsDisabled"
   v-model="selVal" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -138,7 +138,7 @@ const selVal = ref(1)
 :options="options"
 v-model="selVal" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -171,7 +171,7 @@ value="id"
 v-model="selVal"
 @change="onChange" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">
@@ -203,7 +203,7 @@ const selVal = ref(1)
 v-model="selVal"
 @change="onChange" />
 
-::: details Show Code
+::: details Code
 
 ```vue
 <script setup lang="ts">

@@ -99,7 +99,7 @@ function downloadFile(url, name) {
   };
   xhr.send();
 }
-const _hoisted_1$3 = {
+const _hoisted_1$2 = {
   key: 0,
   class: "q-loadingIndicator"
 };
@@ -151,7 +151,7 @@ const _sfc_main$3 = /* @__PURE__ */ defineComponent({
       return openBlock(), createElementBlock("button", {
         class: normalizeClass(["q-button", classes.value])
       }, [
-        unref(loading) ? (openBlock(), createElementBlock("span", _hoisted_1$3)) : createCommentVNode("", true),
+        unref(loading) ? (openBlock(), createElementBlock("span", _hoisted_1$2)) : createCommentVNode("", true),
         renderSlot(_ctx.$slots, "default", {}, () => [
           createTextVNode(toDisplayString(unref(type)), 1)
         ], true)
@@ -171,7 +171,7 @@ const QButton = /* @__PURE__ */ _export_sfc(_sfc_main$3, [["__scopeId", "data-v-
 QButton.install = (app) => {
   app.component(QButton.name, QButton);
 };
-const _hoisted_1$2 = ["title"];
+const _hoisted_1$1 = ["title"];
 const _hoisted_2$1 = ["title", "onMouseenter", "onClick"];
 const __default__$2 = defineComponent({
   name: "QSelect"
@@ -287,14 +287,14 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
             class: normalizeClass(["u-select-input", { placeholder: !selectedName.value }]),
             style: normalizeStyle(`line-height: ${_ctx.height - 2}px;`),
             title: selectedName.value
-          }, toDisplayString(selectedName.value || _ctx.placeholder), 15, _hoisted_1$2),
+          }, toDisplayString(selectedName.value || _ctx.placeholder), 15, _hoisted_1$1),
           createVNode(_component_q_icon, {
             name: "q-icon-arrow-bottom",
-            class: normalizeClass(["triangle", { rotate: showOptions.value, show: !showClose.value }])
+            class: normalizeClass(["selec-q-icon triangle", { rotate: showOptions.value, show: !showClose.value }])
           }, null, 8, ["class"]),
           createVNode(_component_q_icon, {
             name: "q-icon-close",
-            class: normalizeClass(["close", { show: showClose.value }]),
+            class: normalizeClass(["selec-q-icon close", { show: showClose.value }]),
             onClick: withModifiers(onClear, ["stop"])
           }, null, 8, ["class", "onClick"])
         ], 38),
@@ -332,18 +332,22 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const index_vue_vue_type_style_index_0_scoped_9026db89_lang = "";
-const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-9026db89"]]);
+const index_vue_vue_type_style_index_0_scoped_10eaefa2_lang = "";
+const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-10eaefa2"]]);
 QSelect.install = (app) => {
   app.component(QSelect.name, QSelect);
 };
-const _withScopeId = (n) => (pushScopeId("data-v-625bf3fe"), n = n(), popScopeId(), n);
-const _hoisted_1$1 = ["href", "title", "target"];
+const _withScopeId = (n) => (pushScopeId("data-v-6e1538d3"), n = n(), popScopeId(), n);
+const _hoisted_1 = ["href", "title", "target"];
 const _hoisted_2 = {
   key: 0,
   class: "u-separator"
 };
-const _hoisted_3 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createElementVNode("div", { class: "assist" }, null, -1));
+const _hoisted_3 = {
+  key: 1,
+  class: "u-separator"
+};
+const _hoisted_4 = /* @__PURE__ */ _withScopeId(() => /* @__PURE__ */ createElementVNode("div", { class: "assist" }, null, -1));
 const __default__$1 = defineComponent({
   name: "QBreadcrumb"
 });
@@ -377,6 +381,7 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
       return targetUrl;
     };
     return (_ctx, _cache) => {
+      const _component_q_icon = resolveComponent("q-icon");
       return openBlock(), createElementBlock("div", {
         class: "q-breadcrumb",
         style: normalizeStyle(`height: ${_ctx.height}px;`)
@@ -392,21 +397,24 @@ const _sfc_main$1 = /* @__PURE__ */ defineComponent({
               href: index2 === len.value - 1 ? "javascript:;" : getUrl(route),
               title: route.name,
               target: index2 === len.value - 1 ? "_self" : _ctx.target
-            }, toDisplayString(route.name || "--"), 15, _hoisted_1$1),
-            index2 !== len.value - 1 ? (openBlock(), createElementBlock("span", _hoisted_2, toDisplayString(_ctx.separator || ">"), 1)) : createCommentVNode("", true)
+            }, toDisplayString(route.name || "--"), 15, _hoisted_1),
+            index2 !== len.value - 1 ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
+              _ctx.separator ? (openBlock(), createElementBlock("span", _hoisted_2, toDisplayString(_ctx.separator), 1)) : (openBlock(), createElementBlock("span", _hoisted_3, [
+                createVNode(_component_q_icon, { name: "q-icon-arrow-right" })
+              ]))
+            ], 64)) : createCommentVNode("", true)
           ]);
         }), 128)),
-        _hoisted_3
+        _hoisted_4
       ], 4);
     };
   }
 });
-const index_vue_vue_type_style_index_0_scoped_625bf3fe_lang = "";
-const QBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-625bf3fe"]]);
+const index_vue_vue_type_style_index_0_scoped_6e1538d3_lang = "";
+const QBreadcrumb = /* @__PURE__ */ _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6e1538d3"]]);
 QBreadcrumb.install = (app) => {
   app.component(QBreadcrumb.name, QBreadcrumb);
 };
-const _hoisted_1 = ["xlink:href"];
 const __default__ = defineComponent({
   name: "QIcon"
 });
@@ -424,18 +432,11 @@ const _sfc_main = /* @__PURE__ */ defineComponent({
     }
   },
   setup(__props) {
-    const props = __props;
-    const iconName = computed(() => {
-      return `#${props.name}`;
-    });
     return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("svg", {
-        class: "icon",
-        style: normalizeStyle({ color: __props.color, fontSize: __props.size + "px" }),
-        "aria-hidden": "true"
-      }, [
-        createElementVNode("use", { "xlink:href": iconName.value }, null, 8, _hoisted_1)
-      ], 4);
+      return openBlock(), createElementBlock("i", {
+        class: normalizeClass(["qIconfont", __props.name]),
+        style: normalizeStyle({ color: __props.color, fontSize: __props.size + "px" })
+      }, null, 6);
     };
   }
 });

@@ -11,7 +11,10 @@
         {{ route.name || "--" }}
       </a>
       <template v-if="index !== len - 1">
-        <span class="u-separator">{{ separator || ">" }}</span>
+        <span class="u-separator" v-if="separator">{{ separator }}</span>
+        <span class="u-separator" v-else>
+          <q-icon name="q-icon-arrow-right" />
+        </span>
       </template>
     </div>
     <div class="assist"></div>

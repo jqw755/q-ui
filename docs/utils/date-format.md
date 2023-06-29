@@ -39,7 +39,7 @@ _格式化时间戳_
 <script setup lang="ts">
 import { dateFormat } from "@jqw755/q-ui"
 
-dateFormat(1687837302186)
+dateFormat(1687837305000)
 </script>
 ```
 

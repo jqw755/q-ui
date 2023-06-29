@@ -8,13 +8,13 @@
 .fade-enter-active,
 .fade-leave-active {
   transform: scaleY(1);
-  transforq-origin: 0% 0%;
+  transform-origin: 0% 0%;
   opacity: 1;
   transition: all 0.3s;
 }
 .fade-enter-from {
   transform: scaleY(0.8);
-  transforq-origin: 0% 0%;
+  transform-origin: 0% 0%;
   opacity: 0;
 }
 .fade-leave-to {
@@ -38,6 +38,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+  }
+  .selec-q-icon {
+    line-height: 30px;
   }
   .placeholder {
     color: #bfbfbf;
@@ -63,8 +66,8 @@
     bottom: 0;
     margin: auto 0;
     right: 11px;
-    width: 12px;
-    height: 12px;
+    // width: 12px;
+    // height: 12px;
     fill: rgba(0, 0, 0, 0.4);
     opacity: 0;
     pointer-events: none;

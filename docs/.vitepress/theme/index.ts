@@ -4,16 +4,16 @@ import QUI from "../../../dist/q-ui"
 import "../../../dist/style.css"
 
 export default {
-  extends: DefaultTheme, // or ...DefaultTheme
+  ...DefaultTheme, // or extends: DefaultTheme,
   enhanceApp({ app }) {
     app.use(QUI)
-    app.mixin({
-      async mounted() {
-        //你自己的插件地址
-        import("../../../packages/Icon/iconfont").then((module) => {
-          app.use(module.default)
-        })
-      },
-    })
+    // app.mixin({
+    //   async mounted() {
+    //     //你自己的插件地址
+    //     import("../../../packages/Icon/iconfont").then((module) => {
+    //       app.use(module.default)
+    //     })
+    //   },
+    // })
   },
 }
