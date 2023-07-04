@@ -1,4 +1,4 @@
-import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, unref, createCommentVNode, renderSlot, createTextVNode, toDisplayString, ref, watchEffect, resolveComponent, normalizeStyle, createElementVNode, createVNode, withModifiers, Transition, withCtx, withDirectives, Fragment, renderList, vShow, pushScopeId, popScopeId } from "vue";
+import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, unref, createCommentVNode, renderSlot, createTextVNode, toDisplayString, ref, watchEffect, onMounted, nextTick, resolveComponent, normalizeStyle, createElementVNode, createVNode, withModifiers, Transition, withCtx, withDirectives, Fragment, renderList, vShow, pushScopeId, popScopeId } from "vue";
 const index = "";
 function dateFormat(time = Date.now(), fmt = "yyyy-MM-dd hh:mm:ss") {
   let date = new Date(time);
@@ -173,6 +173,7 @@ QButton.install = (app) => {
 };
 const _hoisted_1$1 = ["title"];
 const _hoisted_2$1 = ["title", "onMouseenter", "onClick"];
+const _hoisted_3$1 = { class: "select-loading__text" };
 const __default__$2 = defineComponent({
   name: "QSelect"
 });
@@ -184,6 +185,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     value: { default: "value" },
     placeholder: { default: "请选择" },
     disabled: { type: Boolean, default: false },
+    loadMore: { type: Function, default: void 0 },
+    isLoading: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
     width: { default: 120 },
     height: { default: 32 },
@@ -266,6 +269,23 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }
       showOptions.value = false;
     }
+    function loadMoreFn() {
+      if (!props.isLoading) {
+        props.loadMore && props.loadMore();
+      }
+    }
+    onMounted(() => {
+      nextTick(() => {
+        const element = document.querySelector(".q-select .q-select-loadmore");
+        element && element.addEventListener("scroll", () => {
+          const { scrollTop, scrollHeight, clientHeight } = element;
+          const scrollDistance = scrollHeight - scrollTop <= clientHeight;
+          if (scrollDistance) {
+            loadMoreFn();
+          }
+        });
+      });
+    });
     return (_ctx, _cache) => {
       const _component_q_icon = resolveComponent("q-icon");
       return openBlock(), createElementBlock("div", {
@@ -301,7 +321,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         createVNode(Transition, { name: "fade" }, {
           default: withCtx(() => [
             withDirectives(createElementVNode("div", {
-              class: "q-options-panel",
+              class: normalizeClass(["q-options-panel", { "q-select-loadmore": !!_ctx.loadMore }]),
               onMouseenter: onEnter,
               onMouseleave: onLeave,
               style: normalizeStyle(`top: ${_ctx.height + 4}px; line-height: ${_ctx.height - 10}px; max-height: ${_ctx.maxDisplay * _ctx.height + 9}px; width: ${_ctx.width}px;`)
@@ -321,8 +341,11 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                   onMouseenter: ($event) => onHover(option[_ctx.value]),
                   onClick: ($event) => option.disabled ? () => false : onChange(option[_ctx.value], option[_ctx.label], index2)
                 }, toDisplayString(option[_ctx.label]), 43, _hoisted_2$1);
-              }), 128))
-            ], 36), [
+              }), 128)),
+              withDirectives(createElementVNode("p", _hoisted_3$1, "加载中...", 512), [
+                [vShow, _ctx.isLoading]
+              ])
+            ], 38), [
               [vShow, showOptions.value]
             ])
           ]),
@@ -332,8 +355,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const index_vue_vue_type_style_index_0_scoped_10eaefa2_lang = "";
-const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-10eaefa2"]]);
+const index_vue_vue_type_style_index_0_scoped_beb910d4_lang = "";
+const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-beb910d4"]]);
 QSelect.install = (app) => {
   app.component(QSelect.name, QSelect);
 };

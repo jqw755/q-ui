@@ -33,6 +33,42 @@ const optionsCustom = ref([
     id: 2
   },
 ])
+
+// 加载更多
+let isLoading = ref(false)
+const modeOptions = ref([
+  { id: 1, label: "label-1", value: "1" },
+  { id: 2, label: "label-2", value: "2" },
+  { id: 3, label: "label-3", value: "3" },
+  { id: 4, label: "label-4", value: "4" },
+  { id: 5, label: "label-5", value: "5" },
+  { id: 6, label: "label-6", value: "6" },
+  { id: 7, label: "label-7", value: "7" },
+  { id: 8, label: "label-8", value: "8" },
+  { id: 9, label: "label-9", value: "9" },
+  { id: 10, label: "label-10", value: "10" },
+])
+// 获取下拉菜单数据
+const getList = () => {
+  const len = modeOptions.value.length
+  if (len >= 50) {
+    return
+  }
+  isLoading.value = true
+
+  setTimeout(() => {
+    for (let index = 1; index <= 10; index++) {
+      const val = len + index
+      modeOptions.value.push({
+        id: val,
+        label: `label-${val}`,
+        value: val,
+      })
+    }
+    isLoading.value = false
+  }, 1000)
+}
+
 const selVal = ref(1)
 watchEffect(() => {
   console.log('选中的值:', selVal.value)
@@ -46,7 +82,7 @@ function onChange (value: string|number, label: string,  index: number) {
 
 ## 基本使用
 
-<QSelect :options="options" clearable v-model="selVal" />
+<q-select :options="options" clearable v-model="selVal" />
 
 ::: details Code
 
@@ -69,7 +105,59 @@ watchEffect(() => {
 })
 </script>
 <template>
-  <QSelect :options="options" v-model="selVal" />
+  <q-select :options="options" v-model="selVal" />
+</template>
+```
+
+:::
+
+## 加载更多选项
+
+<q-select :options="modeOptions" v-model="selVal" value="id" :is-loading="isLoading" :loadMore="getList"/>
+
+::: details Code
+
+```vue
+<script setup lang="ts">
+import { ref } from "vue"
+
+const selVal = ref(1)
+let isLoading = ref(false)
+const modeOptions = ref([
+  { id: 1, label: "label-1", value: "1" },
+  { id: 2, label: "label-2", value: "2" },
+  { id: 3, label: "label-3", value: "3" },
+  { id: 4, label: "label-4", value: "4" },
+  { id: 5, label: "label-5", value: "5" },
+  { id: 6, label: "label-6", value: "6" },
+  { id: 7, label: "label-7", value: "7" },
+  { id: 8, label: "label-8", value: "8" },
+  { id: 9, label: "label-9", value: "9" },
+  { id: 10, label: "label-10", value: "10" },
+])
+// 获取下拉菜单数据
+const getList = () => {
+  const len = modeOptions.value.length
+  if (len >= 50) {
+    return
+  }
+  isLoading.value = true
+
+  setTimeout(() => {
+    for (let index = 1; index <= 10; index++) {
+      const val = len + index
+      modeOptions.value.push({
+        id: val,
+        label: `label-${val}`,
+        value: val,
+      })
+    }
+    isLoading.value = false
+  }, 1000)
+}
+</script>
+<template>
+  <q-select :options="modeOptions" v-model="selVal" value="id" :is-loading="isLoading" :loadMore="getList" />
 </template>
 ```
 
@@ -77,7 +165,7 @@ watchEffect(() => {
 
 ## 禁用
 
-<QSelect :options="options" v-model="selVal" disabled />
+<q-select :options="options" v-model="selVal" disabled />
 
 ::: details Code
 
@@ -93,7 +181,7 @@ const options = ref([
 const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="options" v-model="selVal" disabled />
+  <q-select :options="options" v-model="selVal" disabled />
 </template>
 ```
 
@@ -101,7 +189,7 @@ const selVal = ref(1)
 
 ## 禁用选项
 
-<QSelect
+<q-select
   :options="optionsDisabled"
   v-model="selVal" />
 
@@ -124,7 +212,7 @@ const optionsDisabled = ref([
 const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="optionsDisabled" v-model="selVal" />
+  <q-select :options="optionsDisabled" v-model="selVal" />
 </template>
 ```
 
@@ -132,7 +220,7 @@ const selVal = ref(1)
 
 ## 自定义样式
 
-<QSelect
+<q-select
 :width="180"
 :height="42"
 :options="options"
@@ -156,7 +244,7 @@ const options = ref([
 const selVal = ref(1)
 </script>
 <template>
-  <QSelect :width="180" :height="42" :options="options" v-model="selVal" />
+  <q-select :width="180" :height="42" :options="options" v-model="selVal" />
 </template>
 ```
 
@@ -164,7 +252,7 @@ const selVal = ref(1)
 
 ## 自定义字段名
 
-<QSelect
+<q-select
 :options="optionsCustom"
 label="name"
 value="id"
@@ -189,7 +277,7 @@ const optionsCustom = ref([
 const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="optionsCustom" label="name" value="id" v-model="selVal" />
+  <q-select :options="optionsCustom" label="name" value="id" v-model="selVal" />
 </template>
 ```
 
@@ -197,7 +285,7 @@ const selVal = ref(1)
 
 ## 自定义下拉面板展示数
 
-<QSelect
+<q-select
 :options="options"
 :max-display="1"
 v-model="selVal"
@@ -221,7 +309,7 @@ const options = ref([
 const selVal = ref(1)
 </script>
 <template>
-  <QSelect :options="options" :max-display="1" v-model="selVal" />
+  <q-select :options="options" :max-display="1" v-model="selVal" />
 </template>
 ```
 
