@@ -329,6 +329,8 @@ const selVal = ref(1)
 | width               | 宽度                                     | number                           | 120      | false |
 | height              | 高度                                     | number                           | 32       | false |
 | maxDisplay          | 下拉菜单最多展示的下拉项数，超出滚动显示 | number                           | 7        | false |
+| loadMore            | 滚动加载更多                             | function                         | --       | false |
+| isLoading           | 滚动加载更多时的提示状态                 | boolean                          | false    | false |
 
 ## Option Type
 

@@ -2,7 +2,7 @@
 
 ## 介绍
 
-该组件库采用 Vite4 + Vue3 + TS + Scss 实现！
+该组件库采用 Vite4 + Vue3 + TS + Scss 实现！需安装 nodejs v16 以上环境
 
 ## 三种使用方式
 

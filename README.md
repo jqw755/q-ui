@@ -1,6 +1,6 @@
 # Q UI
 
-Q UI 是一套基于 `Vue3` + `TypeScript` 开发的 PC 端 UI 组件库。
+Q UI 是一套基于 `Vue3` + `TypeScript` 开发的 PC 端 UI 组件库。需安装 nodejs v16 以上环境
 
 总结前端 UI 组件库和文档搭建的经验，同时封装一些项目中常用的组件。
 
