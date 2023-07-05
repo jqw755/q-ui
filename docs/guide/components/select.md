@@ -1,7 +1,9 @@
-# 选择器 QSelect
+# Select 选择器
 
 <script setup lang="ts">
 import { ref, watchEffect } from 'vue'
+
+let selVal = ref(1)
 const options = ref([
   {
     label: '北京市',
@@ -10,6 +12,18 @@ const options = ref([
   {
     label: '上海市',
     value: 2
+  },    
+  {
+    label: '深圳市',
+    value: 3
+  },  
+  {
+    label: '苏州市',
+    value: 4
+  },  
+  {
+    label: '南阳市',
+    value: 5
   },
 ])
 const optionsDisabled = ref([
@@ -22,20 +36,45 @@ const optionsDisabled = ref([
     value: 2,
     disabled: true
   },
+  {
+    label: '深圳市',
+    value: 3
+  },  
+  {
+    label: '苏州市',
+    value: 4
+  },  
+  {
+    label: '南阳市',
+    value: 5
+  },
 ])
 const optionsCustom = ref([
   {
-    name: '北京市',
-    id: 1
+    id: 1,
+    name: "北京市",
   },
   {
-    name: '上海市',
-    id: 2
+    id: 2,
+    name: "上海市",
+  },
+  {
+    id: 3,
+    name: "深圳市",
+  },
+  {
+    id: 4,
+    name: "苏州市",
+  },
+  {
+    id: 5,
+    name: "南阳市",
   },
 ])
 
 // 加载更多
-let isLoading = ref(false)
+let moreSelVal = ref(1)
+let loading = ref(false)
 const modeOptions = ref([
   { id: 1, label: "label-1", value: "1" },
   { id: 2, label: "label-2", value: "2" },
@@ -54,7 +93,7 @@ const getList = () => {
   if (len >= 50) {
     return
   }
-  isLoading.value = true
+  loading.value = true
 
   setTimeout(() => {
     for (let index = 1; index <= 10; index++) {
@@ -65,11 +104,10 @@ const getList = () => {
         value: val,
       })
     }
-    isLoading.value = false
+    loading.value = false
   }, 1000)
 }
 
-const selVal = ref(1)
 watchEffect(() => {
   console.log('选中的值:', selVal.value)
 })
@@ -98,6 +136,18 @@ const options = ref([
     label: "上海市",
     value: 2,
   },
+  {
+    label: "深圳市",
+    value: 3,
+  },
+  {
+    label: "苏州市",
+    value: 4,
+  },
+  {
+    label: "南阳市",
+    value: 5,
+  },
 ])
 const selVal = ref(1)
 watchEffect(() => {
@@ -113,7 +163,7 @@ watchEffect(() => {
 
 ## 加载更多选项
 
-<q-select :options="modeOptions" v-model="selVal" value="id" :is-loading="isLoading" :loadMore="getList"/>
+<q-select :options="modeOptions" v-model="moreSelVal" value="id" :loading="loading" :loadmore="getList"/>
 
 ::: details Code
 
@@ -121,8 +171,8 @@ watchEffect(() => {
 <script setup lang="ts">
 import { ref } from "vue"
 
-const selVal = ref(1)
-let isLoading = ref(false)
+const moreSelVal = ref(1)
+let loading = ref(false)
 const modeOptions = ref([
   { id: 1, label: "label-1", value: "1" },
   { id: 2, label: "label-2", value: "2" },
@@ -141,7 +191,7 @@ const getList = () => {
   if (len >= 50) {
     return
   }
-  isLoading.value = true
+  loading.value = true
 
   setTimeout(() => {
     for (let index = 1; index <= 10; index++) {
@@ -152,18 +202,18 @@ const getList = () => {
         value: val,
       })
     }
-    isLoading.value = false
+    loading.value = false
   }, 1000)
 }
 </script>
 <template>
-  <q-select :options="modeOptions" v-model="selVal" value="id" :is-loading="isLoading" :loadMore="getList" />
+  <q-select :options="modeOptions" v-model="moreSelVal" value="id" :loading="loading" :loadmore="getList" />
 </template>
 ```
 
 :::
 
-## 禁用
+## 禁用状态
 
 <q-select :options="options" v-model="selVal" disabled />
 
@@ -176,6 +226,22 @@ const options = ref([
   {
     label: "北京市",
     value: 1,
+  },
+  {
+    label: "上海市",
+    value: 2,
+  },
+  {
+    label: "深圳市",
+    value: 3,
+  },
+  {
+    label: "苏州市",
+    value: 4,
+  },
+  {
+    label: "南阳市",
+    value: 5,
   },
 ])
 const selVal = ref(1)
@@ -207,6 +273,18 @@ const optionsDisabled = ref([
     label: "上海市",
     value: 2,
     disabled: true,
+  },
+  {
+    label: "深圳市",
+    value: 3,
+  },
+  {
+    label: "苏州市",
+    value: 4,
+  },
+  {
+    label: "南阳市",
+    value: 5,
   },
 ])
 const selVal = ref(1)
@@ -240,6 +318,18 @@ const options = ref([
     label: "上海市",
     value: 2,
   },
+  {
+    label: "深圳市",
+    value: 3,
+  },
+  {
+    label: "苏州市",
+    value: 4,
+  },
+  {
+    label: "南阳市",
+    value: 5,
+  },
 ])
 const selVal = ref(1)
 </script>
@@ -266,12 +356,24 @@ v-model="selVal"
 import { ref } from "vue"
 const optionsCustom = ref([
   {
-    name: "北京市",
     id: 1,
+    name: "北京市",
   },
   {
-    name: "上海市",
     id: 2,
+    name: "上海市",
+  },
+  {
+    id: 3,
+    name: "深圳市",
+  },
+  {
+    id: 4,
+    name: "苏州市",
+  },
+  {
+    id: 5,
+    name: "南阳市",
   },
 ])
 const selVal = ref(1)
@@ -287,7 +389,7 @@ const selVal = ref(1)
 
 <q-select
 :options="options"
-:max-display="1"
+:max-display="2"
 v-model="selVal"
 @change="onChange" />
 
@@ -305,11 +407,23 @@ const options = ref([
     label: "上海市",
     value: 2,
   },
+  {
+    label: "深圳市",
+    value: 3,
+  },
+  {
+    label: "苏州市",
+    value: 4,
+  },
+  {
+    label: "南阳市",
+    value: 5,
+  },
 ])
 const selVal = ref(1)
 </script>
 <template>
-  <q-select :options="options" :max-display="1" v-model="selVal" />
+  <q-select :options="options" :max-display="2" v-model="selVal" />
 </template>
 ```
 
@@ -317,20 +431,20 @@ const selVal = ref(1)
 
 ## APIs
 
-| 参数                | 说明                                     | 类型                             | 默认值   | 必传  |
-| ------------------- | ---------------------------------------- | -------------------------------- | -------- | ----- |
-| modelValue(v-model) | 当前选中的 option 条目                   | number &#124; string &#124; null | null     | false |
-| options             | 选项数据                                 | Option[]                         | []       | false |
-| label               | 字典项的文本字段名                       | string                           | 'label'  | false |
-| value               | 字典项的值字段名                         | string                           | 'value'  | false |
-| placeholder         | 默认文字                                 | string                           | '请选择' | false |
-| disabled            | 是否禁用                                 | boolean                          | false    | false |
-| clearable           | 是否支持清除                             | boolean                          | false    | false |
-| width               | 宽度                                     | number                           | 120      | false |
-| height              | 高度                                     | number                           | 32       | false |
-| maxDisplay          | 下拉菜单最多展示的下拉项数，超出滚动显示 | number                           | 7        | false |
-| loadMore            | 滚动加载更多                             | function                         | --       | false |
-| isLoading           | 滚动加载更多时的提示状态                 | boolean                          | false    | false |
+| 参数               | 说明                                     | 类型                             | 默认值   | 必传  |
+| ------------------ | ---------------------------------------- | -------------------------------- | -------- | ----- |
+| v-model/modelValue | 当前选中的 option 项目                   | number &#124; string &#124; null | null     | false |
+| options            | 选项数据                                 | Option[]                         | []       | false |
+| label              | 字典项的文本字段名                       | string                           | 'label'  | false |
+| value              | 字典项的值字段名                         | string                           | 'value'  | false |
+| placeholder        | 默认文字                                 | string                           | '请选择' | false |
+| disabled           | 是否禁用                                 | boolean                          | false    | false |
+| clearable          | 是否支持清除                             | boolean                          | false    | false |
+| width              | 宽度                                     | number                           | 120      | false |
+| height             | 高度                                     | number                           | 32       | false |
+| maxDisplay         | 下拉菜单最多展示的下拉项数，超出滚动显示 | number                           | 7        | false |
+| loadmore           | 滚动加载更多回调                         | function                         | --       | false |
+| loading            | 滚动加载更多时的提示状态                 | boolean                          | false    | false |
 
 ## Option Type
 

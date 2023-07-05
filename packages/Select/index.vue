@@ -26,7 +26,7 @@
     <Transition name="fade">
       <div
         v-show="showOptions"
-        :class="['q-options-panel', { 'q-select-loadmore': !!loadMore }]"
+        :class="['q-options-panel', { 'q-select-loadmore': !!loadmore }]"
         @mouseenter="onEnter"
         @mouseleave="onLeave"
         :style="`top: ${height + 4}px; line-height: ${height - 10}px; max-height: ${
@@ -50,7 +50,7 @@
         >
           {{ option[label] }}
         </p>
-        <p v-show="isLoading" class="select-loading__text">加载中...</p>
+        <p v-show="loading" class="select-loading__text">加载中...</p>
       </div>
     </Transition>
   </div>
@@ -58,7 +58,7 @@
 
 <!-- 借助插件vite-plugin-vue-setup-extend ，可以再定义组件的name时，直接写在script上 -->
 <script setup lang="ts" name="QSelect">
-import { ref, watchEffect, onMounted, nextTick } from "vue"
+import { ref, watchEffect, onMounted, onUnmounted, nextTick } from "vue"
 interface IOption {
   label?: string // 选项值
   value?: string | number // 选项名
@@ -71,8 +71,8 @@ interface IProps {
   value?: string // 字典项的值字段名
   placeholder?: string // 默认文本
   disabled?: boolean // 是否禁用
-  loadMore?: Function // 加载更多
-  isLoading?: boolean // 是否加载更多中
+  loadmore?: Function // 加载更多
+  loading?: boolean // 是否加载更多中
   clearable?: boolean // 是否支持清除
   width?: number // 宽度
   height?: number // 高度
@@ -85,8 +85,8 @@ const props = withDefaults(defineProps<IProps>(), {
   value: "value",
   placeholder: "请选择",
   disabled: false,
-  loadMore: undefined,
-  isLoading: false,
+  loadmore: undefined,
+  loading: false,
   clearable: false,
   width: 120,
   height: 32,
@@ -176,8 +176,19 @@ function onChange(value: string | number, label: string, index: number) {
 // 下拉菜单滚动触底时，加载更多
 function loadMoreFn() {
   // 加载期间触发滚动时，不执行逻辑
-  if (!props.isLoading) {
-    props.loadMore && props.loadMore()
+  if (!props.loading) {
+    props.loadmore && props.loadmore()
+  }
+}
+// 计算滚动距离
+function calcScrollDis() {
+  const element = document.querySelector(".q-select .q-select-loadmore")
+  if (element) {
+    const { scrollTop, scrollHeight, clientHeight } = element
+    const scrollDistance = scrollHeight - scrollTop <= clientHeight
+    if (scrollDistance) {
+      loadMoreFn()
+    }
   }
 }
 
@@ -185,15 +196,12 @@ onMounted(() => {
   nextTick(() => {
     // 监听加载更多滚动事件
     const element = document.querySelector(".q-select .q-select-loadmore")
-    element &&
-      element.addEventListener("scroll", () => {
-        const { scrollTop, scrollHeight, clientHeight } = element
-        const scrollDistance = scrollHeight - scrollTop <= clientHeight
-        if (scrollDistance) {
-          loadMoreFn()
-        }
-      })
+    element && element.addEventListener("scroll", calcScrollDis)
   })
+})
+onUnmounted(() => {
+  const element = document.querySelector(".q-select .q-select-loadmore")
+  element && element.removeEventListener("scroll", calcScrollDis)
 })
 </script>
 <style lang="scss" scoped>

@@ -1,4 +1,4 @@
-# 防抖
+# debounce 防抖
 
 <br/>
 
@@ -7,7 +7,7 @@ _对于短时间内连续触发的事件，在 delay 时间内函数只执行最
 ::: details Code
 
 ```ts
-export function debounce(fn: Function, delay = 300): any {
+function debounce(fn: Function, delay = 300) {
   // timer 是在闭包中的
   let timer: number | null
   return function () {
@@ -64,7 +64,7 @@ function showPosition() {
 </script>
 ```
 
-## Params
+## APIs
 
 | 参数  | 说明                  | 类型     | 默认值 | 必传  |
 | ----- | --------------------- | -------- | ------ | ----- |

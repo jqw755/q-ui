@@ -1,4 +1,4 @@
-import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, unref, createCommentVNode, renderSlot, createTextVNode, toDisplayString, ref, watchEffect, onMounted, nextTick, resolveComponent, normalizeStyle, createElementVNode, createVNode, withModifiers, Transition, withCtx, withDirectives, Fragment, renderList, vShow, pushScopeId, popScopeId } from "vue";
+import { defineComponent, computed, openBlock, createElementBlock, normalizeClass, unref, createCommentVNode, renderSlot, createTextVNode, toDisplayString, ref, watchEffect, onMounted, nextTick, onUnmounted, resolveComponent, normalizeStyle, createElementVNode, createVNode, withModifiers, Transition, withCtx, withDirectives, Fragment, renderList, vShow, pushScopeId, popScopeId } from "vue";
 const index = "";
 function dateFormat(time = Date.now(), fmt = "yyyy-MM-dd hh:mm:ss") {
   let date = new Date(time);
@@ -185,8 +185,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     value: { default: "value" },
     placeholder: { default: "请选择" },
     disabled: { type: Boolean, default: false },
-    loadMore: { type: Function, default: void 0 },
-    isLoading: { type: Boolean, default: false },
+    loadmore: { type: Function, default: void 0 },
+    loading: { type: Boolean, default: false },
     clearable: { type: Boolean, default: false },
     width: { default: 120 },
     height: { default: 32 },
@@ -270,21 +270,29 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       showOptions.value = false;
     }
     function loadMoreFn() {
-      if (!props.isLoading) {
-        props.loadMore && props.loadMore();
+      if (!props.loading) {
+        props.loadmore && props.loadmore();
+      }
+    }
+    function calcScrollDis() {
+      const element = document.querySelector(".q-select .q-select-loadmore");
+      if (element) {
+        const { scrollTop, scrollHeight, clientHeight } = element;
+        const scrollDistance = scrollHeight - scrollTop <= clientHeight;
+        if (scrollDistance) {
+          loadMoreFn();
+        }
       }
     }
     onMounted(() => {
       nextTick(() => {
         const element = document.querySelector(".q-select .q-select-loadmore");
-        element && element.addEventListener("scroll", () => {
-          const { scrollTop, scrollHeight, clientHeight } = element;
-          const scrollDistance = scrollHeight - scrollTop <= clientHeight;
-          if (scrollDistance) {
-            loadMoreFn();
-          }
-        });
+        element && element.addEventListener("scroll", calcScrollDis);
       });
+    });
+    onUnmounted(() => {
+      const element = document.querySelector(".q-select .q-select-loadmore");
+      element && element.removeEventListener("scroll", calcScrollDis);
     });
     return (_ctx, _cache) => {
       const _component_q_icon = resolveComponent("q-icon");
@@ -321,7 +329,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         createVNode(Transition, { name: "fade" }, {
           default: withCtx(() => [
             withDirectives(createElementVNode("div", {
-              class: normalizeClass(["q-options-panel", { "q-select-loadmore": !!_ctx.loadMore }]),
+              class: normalizeClass(["q-options-panel", { "q-select-loadmore": !!_ctx.loadmore }]),
               onMouseenter: onEnter,
               onMouseleave: onLeave,
               style: normalizeStyle(`top: ${_ctx.height + 4}px; line-height: ${_ctx.height - 10}px; max-height: ${_ctx.maxDisplay * _ctx.height + 9}px; width: ${_ctx.width}px;`)
@@ -343,7 +351,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
                 }, toDisplayString(option[_ctx.label]), 43, _hoisted_2$1);
               }), 128)),
               withDirectives(createElementVNode("p", _hoisted_3$1, "加载中...", 512), [
-                [vShow, _ctx.isLoading]
+                [vShow, _ctx.loading]
               ])
             ], 38), [
               [vShow, showOptions.value]
@@ -355,8 +363,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
     };
   }
 });
-const index_vue_vue_type_style_index_0_scoped_beb910d4_lang = "";
-const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-beb910d4"]]);
+const index_vue_vue_type_style_index_0_scoped_a6b04991_lang = "";
+const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-a6b04991"]]);
 QSelect.install = (app) => {
   app.component(QSelect.name, QSelect);
 };

@@ -1,4 +1,4 @@
-# 图标 q-icon
+# Icon 图标
 
 <br>
 
@@ -47,16 +47,19 @@ const iconList = ref([
   ['q-icon-arrow-bottom', 'q-icon-arrow-left','q-icon-upload', 'q-icon-star-off', 'q-icon-image', 'q-icon-location'],
   ['q-icon-loading', 'q-icon-close'],
 ])
-// 复制源码
+let copyTips = ref('复制');
+// 复制
 const copyIconCode = (iconName: string) => {
   copyText(`<q-icon name="${iconName}" />`)
+  copyTips.value = '复制成功'
+  setTimeout(() => {copyTips.value = '复制'}, 300)
 }
 </script>
 <table>
   <tr v-for="item in iconList">
       <td v-for="iconName in item" :class="$style['icon-td-wrap']">
         <q-icon :name="iconName" size="22"/>
-        <div :class="$style['copy-icon']" @click="copyIconCode(iconName)">复制</div>
+        <div :class="$style['copy-icon']" @click="copyIconCode(iconName)">{{copyTips}}</div>
       </td>
   </tr>
 </table>

@@ -1,4 +1,4 @@
-# 面包屑 q-breadcrumb
+# Breadcrumb 面包屑
 
 <script setup lang="ts">
 const routes = [

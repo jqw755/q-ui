@@ -1,4 +1,4 @@
-# 下载文件
+# downloadFile 下载文件
 
 ::: details Code
 
@@ -44,7 +44,7 @@ donwloadFile("https://cdn.jsdelivr.net/gh/themusecatcher/resources@0.0.3/Markdow
 </script>
 ```
 
-## Params
+## APIs
 
 | 参数 | 说明                                               | 类型   | 默认值 | 必传  |
 | ---- | -------------------------------------------------- | ------ | ------ | ----- |

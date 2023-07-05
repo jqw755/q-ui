@@ -16,7 +16,6 @@ import {
   ref,
   renderList,
   renderSlot,
-  resolveComponent,
   toDisplayString,
   unref,
   vShow,
@@ -54,16 +53,16 @@ function dateFormat(time = Date.now(), fmt = "yyyy-MM-dd hh:mm:ss") {
   }
   return fmt;
 }
-function throttle(fn, deplay = 300) {
-  let timer = null;
-  return function(...args) {
-    const context = this;
-    if (!timer) {
-      timer = setTimeout(() => {
-        timer = null;
-        fn.apply(context, args);
-      }, deplay);
+function throttle(fn, delay = 300) {
+  let timer;
+  return function() {
+    if (timer) {
+      return;
     }
+    timer = setTimeout(() => {
+      fn();
+      timer = null;
+    }, delay);
   };
 }
 function debounce(fn, delay = 300) {
@@ -130,11 +129,11 @@ var _hoisted_1$2 = {
   key: 0,
   class: "q-loadingIndicator"
 };
-var __default__$3 = defineComponent({
+var __default__$2 = {
   name: "QButton"
-});
-var _sfc_main$3 = defineComponent({
-  ...__default__$3,
+};
+var _sfc_main$2 = defineComponent({
+  ...__default__$2,
   props: {
     type: {
       type: String,
@@ -193,24 +192,34 @@ var _export_sfc = (sfc, props) => {
   }
   return target;
 };
-var QButton = _export_sfc(_sfc_main$3, [["__scopeId", "data-v-0b80682a"]]);
+var QButton = _export_sfc(_sfc_main$2, [["__scopeId", "data-v-4eae179c"]]);
 QButton.install = (app) => {
-  app.component(QButton.name, QButton);
+  app.component(QButton.__name, QButton);
 };
+var _withScopeId$1 = (n) => (pushScopeId("data-v-3b126f0b"), n = n(), popScopeId(), n);
 var _hoisted_1$1 = ["title"];
-var _hoisted_2$1 = ["title", "onMouseenter", "onClick"];
-var __default__$2 = defineComponent({
+var _hoisted_2$1 = _withScopeId$1(() => createBaseVNode("path", { d: "M884 256h-75c-5.1 0-9.9 2.5-12.9 6.6L512 654.2 227.9 262.6c-3-4.1-7.8-6.6-12.9-6.6h-75c-6.5 0-10.3 7.4-6.5 12.7l352.6 486.1c12.8 17.6 39 17.6 51.7 0l352.6-486.1c3.9-5.3.1-12.7-6.4-12.7z" }, null, -1));
+var _hoisted_3$1 = [
+  _hoisted_2$1
+];
+var _hoisted_4$1 = ["onClick"];
+var _hoisted_5$1 = _withScopeId$1(() => createBaseVNode("path", { d: "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm165.4 618.2l-66-.3L512 563.4l-99.3 118.4-66.1.3c-4.4 0-8-3.5-8-8 0-1.9.7-3.7 1.9-5.2l130.1-155L340.5 359a8.32 8.32 0 01-1.9-5.2c0-4.4 3.6-8 8-8l66.1.3L512 464.6l99.3-118.4 66-.3c4.4 0 8 3.5 8 8 0 1.9-.7 3.7-1.9 5.2L553.5 514l130 155c1.2 1.5 1.9 3.3 1.9 5.2 0 4.4-3.6 8-8 8z" }, null, -1));
+var _hoisted_6$1 = [
+  _hoisted_5$1
+];
+var _hoisted_7 = ["title", "onMouseenter", "onClick"];
+var __default__$1 = {
   name: "QSelect"
-});
-var _sfc_main$2 = defineComponent({
-  ...__default__$2,
+};
+var _sfc_main$1 = defineComponent({
+  ...__default__$1,
   props: {
     options: { default: () => [] },
     label: { default: "label" },
     value: { default: "value" },
     placeholder: { default: "请选择" },
     disabled: { type: Boolean, default: false },
-    clearable: { type: Boolean, default: false },
+    allowClear: { type: Boolean, default: false },
     width: { default: 120 },
     height: { default: 32 },
     maxDisplay: { default: 6 },
@@ -249,12 +258,12 @@ var _sfc_main$2 = defineComponent({
       }
     }
     function onInputEnter() {
-      if (props.clearable && selectedName.value) {
+      if (props.allowClear && selectedName.value) {
         showClose.value = true;
       }
     }
     function onInputLeave() {
-      if (props.clearable && showClose.value) {
+      if (props.allowClear && showClose.value) {
         showClose.value = false;
       }
     }
@@ -293,13 +302,12 @@ var _sfc_main$2 = defineComponent({
       showOptions.value = false;
     }
     return (_ctx, _cache) => {
-      const _component_q_icon = resolveComponent("q-icon");
       return openBlock(), createElementBlock("div", {
-        class: "q-select",
+        class: "m-select",
         style: normalizeStyle(`height: ${_ctx.height}px;`)
       }, [
         createBaseVNode("div", {
-          class: normalizeClass(["q-select-wrap", { hover: !_ctx.disabled, focus: showOptions.value, disabled: _ctx.disabled }]),
+          class: normalizeClass(["m-select-wrap", { hover: !_ctx.disabled, focus: showOptions.value, disabled: _ctx.disabled }]),
           style: normalizeStyle(`width: ${_ctx.width}px; height: ${_ctx.height}px;`),
           tabindex: "0",
           ref_key: "select",
@@ -314,20 +322,26 @@ var _sfc_main$2 = defineComponent({
             style: normalizeStyle(`line-height: ${_ctx.height - 2}px;`),
             title: selectedName.value
           }, toDisplayString(selectedName.value || _ctx.placeholder), 15, _hoisted_1$1),
-          createVNode(_component_q_icon, {
-            name: "q-icon-arrow-bottom",
-            class: normalizeClass(["selec-q-icon triangle", { rotate: showOptions.value, show: !showClose.value }])
-          }, null, 8, ["class"]),
-          createVNode(_component_q_icon, {
-            name: "q-icon-close",
-            class: normalizeClass(["selec-q-icon close", { show: showClose.value }]),
-            onClick: withModifiers(onClear, ["stop"])
-          }, null, 8, ["class", "onClick"])
+          (openBlock(), createElementBlock("svg", {
+            class: normalizeClass(["triangle", { rotate: showOptions.value, show: !showClose.value }]),
+            viewBox: "64 64 896 896",
+            "data-icon": "down",
+            "aria-hidden": "true",
+            focusable: "false"
+          }, _hoisted_3$1, 2)),
+          (openBlock(), createElementBlock("svg", {
+            onClick: withModifiers(onClear, ["stop"]),
+            class: normalizeClass(["close", { show: showClose.value }]),
+            focusable: "false",
+            "data-icon": "close-circle",
+            "aria-hidden": "true",
+            viewBox: "64 64 896 896"
+          }, _hoisted_6$1, 10, _hoisted_4$1))
         ], 38),
         createVNode(Transition, { name: "fade" }, {
           default: withCtx(() => [
             withDirectives(createBaseVNode("div", {
-              class: "q-options-panel",
+              class: "m-options-panel",
               onMouseenter: onEnter,
               onMouseleave: onLeave,
               style: normalizeStyle(`top: ${_ctx.height + 4}px; line-height: ${_ctx.height - 10}px; max-height: ${_ctx.maxDisplay * _ctx.height + 9}px; width: ${_ctx.width}px;`)
@@ -346,7 +360,7 @@ var _sfc_main$2 = defineComponent({
                   title: option[_ctx.label],
                   onMouseenter: ($event) => onHover(option[_ctx.value]),
                   onClick: ($event) => option.disabled ? () => false : onChange(option[_ctx.value], option[_ctx.label], index2)
-                }, toDisplayString(option[_ctx.label]), 43, _hoisted_2$1);
+                }, toDisplayString(option[_ctx.label]), 43, _hoisted_7);
               }), 128))
             ], 36), [
               [vShow, showOptions.value]
@@ -358,11 +372,11 @@ var _sfc_main$2 = defineComponent({
     };
   }
 });
-var QSelect = _export_sfc(_sfc_main$2, [["__scopeId", "data-v-10eaefa2"]]);
+var QSelect = _export_sfc(_sfc_main$1, [["__scopeId", "data-v-3b126f0b"]]);
 QSelect.install = (app) => {
-  app.component(QSelect.name, QSelect);
+  app.component(QSelect.__name, QSelect);
 };
-var _withScopeId = (n) => (pushScopeId("data-v-6e1538d3"), n = n(), popScopeId(), n);
+var _withScopeId = (n) => (pushScopeId("data-v-8c81a90d"), n = n(), popScopeId(), n);
 var _hoisted_1 = ["href", "title", "target"];
 var _hoisted_2 = {
   key: 0,
@@ -370,19 +384,27 @@ var _hoisted_2 = {
 };
 var _hoisted_3 = {
   key: 1,
-  class: "u-separator"
+  class: "u-arrow",
+  viewBox: "64 64 896 896",
+  "data-icon": "right",
+  "aria-hidden": "true",
+  focusable: "false"
 };
-var _hoisted_4 = _withScopeId(() => createBaseVNode("div", { class: "assist" }, null, -1));
-var __default__$1 = defineComponent({
+var _hoisted_4 = _withScopeId(() => createBaseVNode("path", { d: "M765.7 486.8L314.9 134.7A7.97 7.97 0 0 0 302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 0 0 0-50.4z" }, null, -1));
+var _hoisted_5 = [
+  _hoisted_4
+];
+var _hoisted_6 = _withScopeId(() => createBaseVNode("div", { class: "assist" }, null, -1));
+var __default__ = {
   name: "QBreadcrumb"
-});
-var _sfc_main$1 = defineComponent({
-  ...__default__$1,
+};
+var _sfc_main = defineComponent({
+  ...__default__,
   props: {
     routes: { default: () => [] },
     fontSize: { default: 14 },
     height: { default: 21 },
-    maxWidth: { default: 150 },
+    maxWidth: { default: 180 },
     separator: { default: "" },
     target: { default: "_self" }
   },
@@ -391,7 +413,7 @@ var _sfc_main$1 = defineComponent({
     const len = computed(() => {
       return props.routes.length;
     });
-    const getUrl = (route) => {
+    function getUrl(route) {
       var targetUrl = route.path;
       if (route.query && JSON.stringify(route.query) !== "{}") {
         const query = route.query;
@@ -404,16 +426,15 @@ var _sfc_main$1 = defineComponent({
         });
       }
       return targetUrl;
-    };
+    }
     return (_ctx, _cache) => {
-      const _component_q_icon = resolveComponent("q-icon");
       return openBlock(), createElementBlock("div", {
-        class: "q-breadcrumb",
+        class: "m-breadcrumb",
         style: normalizeStyle(`height: ${_ctx.height}px;`)
       }, [
         (openBlock(true), createElementBlock(Fragment, null, renderList(_ctx.routes, (route, index2) => {
           return openBlock(), createElementBlock("div", {
-            class: "q-bread",
+            class: "m-bread",
             key: index2
           }, [
             createBaseVNode("a", {
@@ -424,50 +445,20 @@ var _sfc_main$1 = defineComponent({
               target: index2 === len.value - 1 ? "_self" : _ctx.target
             }, toDisplayString(route.name || "--"), 15, _hoisted_1),
             index2 !== len.value - 1 ? (openBlock(), createElementBlock(Fragment, { key: 0 }, [
-              _ctx.separator ? (openBlock(), createElementBlock("span", _hoisted_2, toDisplayString(_ctx.separator), 1)) : (openBlock(), createElementBlock("span", _hoisted_3, [
-                createVNode(_component_q_icon, { name: "q-icon-arrow-right" })
-              ]))
+              _ctx.separator ? (openBlock(), createElementBlock("span", _hoisted_2, toDisplayString(_ctx.separator), 1)) : (openBlock(), createElementBlock("svg", _hoisted_3, _hoisted_5))
             ], 64)) : createCommentVNode("", true)
           ]);
         }), 128)),
-        _hoisted_4
+        _hoisted_6
       ], 4);
     };
   }
 });
-var QBreadcrumb = _export_sfc(_sfc_main$1, [["__scopeId", "data-v-6e1538d3"]]);
+var QBreadcrumb = _export_sfc(_sfc_main, [["__scopeId", "data-v-8c81a90d"]]);
 QBreadcrumb.install = (app) => {
-  app.component(QBreadcrumb.name, QBreadcrumb);
+  app.component(QBreadcrumb.__name, QBreadcrumb);
 };
-var __default__ = defineComponent({
-  name: "QIcon"
-});
-var _sfc_main = defineComponent({
-  ...__default__,
-  props: {
-    name: String,
-    color: {
-      type: String,
-      default: "#333333"
-    },
-    size: {
-      type: String,
-      default: "14"
-    }
-  },
-  setup(__props) {
-    return (_ctx, _cache) => {
-      return openBlock(), createElementBlock("i", {
-        class: normalizeClass(["qIconfont", __props.name]),
-        style: normalizeStyle({ color: __props.color, fontSize: __props.size + "px" })
-      }, null, 6);
-    };
-  }
-});
-_sfc_main.install = (app) => {
-  app.component(_sfc_main.name, _sfc_main);
-};
-var components = [QButton, QSelect, QBreadcrumb, _sfc_main];
+var components = [QButton, QSelect, QBreadcrumb];
 var install = (app) => {
   components.forEach((component) => app.component(component.name, component));
 };
@@ -477,7 +468,6 @@ var QUI = {
 export {
   QBreadcrumb,
   QButton,
-  _sfc_main as QIcon,
   QSelect,
   copyText,
   dateFormat,

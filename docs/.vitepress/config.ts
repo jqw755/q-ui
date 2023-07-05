@@ -72,25 +72,39 @@ export default defineConfig({
           ],
         },
         {
-          text: "组件",
+          text: "基础组件",
           items: [
             {
-              text: "图标 q-icon",
+              text: "Icon图标",
               link: "/guide/components/icon",
             },
             {
-              text: "按钮 q-button",
+              text: "Button按钮",
               link: "/guide/components/button",
             },
+          ],
+        },
+        {
+          text: "表单组件",
+          items: [
             {
-              text: "面包屑 q-breadcrumb",
-              link: "/guide/components/breadcrumb",
-            },
-            {
-              text: "选择器 q-select",
+              text: "Select选择器",
               link: "/guide/components/select",
             },
           ],
+        },
+        {
+          text: "导航组件",
+          items: [
+            {
+              text: "Breadcrumb面包屑",
+              link: "/guide/components/breadcrumb",
+            },
+          ],
+        },
+        {
+          text: "更多组件完善中",
+          items: [],
         },
       ],
       "/utils/": [
@@ -107,7 +121,7 @@ export default defineConfig({
           text: "工具",
           items: [
             {
-              text: "date 日期格式化",
+              text: "dateFormat 日期格式化",
               link: "/utils/date-format",
             },
             {

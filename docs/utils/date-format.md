@@ -1,10 +1,9 @@
-# 日期格式化
+# dateFormat 日期格式化
 
 ::: details Code
 
 ```ts
-// 源码
-export function dateFormat(time: number | string | Date = Date.now(), fmt = "yyyy-MM-dd hh:mm:ss"): string {
+function dateFormat(time: number | string | Date = Date.now(), fmt = "yyyy-MM-dd hh:mm:ss") {
   let date = new Date(time)
   let o = <any>{
     "M+": date.getMonth() + 1, //月份
@@ -57,7 +56,7 @@ dateFormat(new Date(), "YYYY/MM/DD")
 </script>
 ```
 
-## Params
+## APIs
 
 | 参数   | 说明                                                         | 类型                             | 默认值                | 必传  |
 | ------ | ------------------------------------------------------------ | -------------------------------- | --------------------- | ----- |

@@ -1,4 +1,4 @@
-# 节流
+# throttle 节流
 
 <br/>
 
@@ -7,7 +7,7 @@ _高频触发同一事件，在函数执行一次之后，该函数每隔指定�
 ::: details Code
 
 ```ts
-export function throttle(fn: Function, deplay = 300): any {
+function throttle(fn: Function, deplay = 300) {
   let timer: any = null
   return function (this: unknown, ...args: any[]) {
     const context = this
@@ -63,7 +63,7 @@ function showPosition() {
 </script>
 ```
 
-## Params
+## APIs
 
 | 参数  | 说明                  | 类型     | 默认值 | 必传  |
 | ----- | --------------------- | -------- | ------ | ----- |
