@@ -28,7 +28,7 @@ export default defineConfig({
       // 构建为库。如果指定了 build.lib，build.cssCodeSplit 会默认为 false。
       // __dirname的值是vite.config.ts文件所在目录
       entry: resolve(__dirname, "packages/index.ts"), // entry是必需的，因为库不能使用HTML作为入口。
-      name: "QUI", // 暴露的全局变量
+      name: "q-ui", // 暴露的全局变量
       // fileName: "@jqw755/q-ui", // 输出的包文件名，默认是package.json的name选项
     },
     rollupOptions: {
