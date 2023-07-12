@@ -1,5 +1,5 @@
 <template>
-  <div class="q-select" :style="`height: ${height}px;`">
+  <div :class="['q-select', selectUniClass]" :style="`height: ${height}px;`">
     <div
       :class="['q-select-wrap', { hover: !disabled, focus: showOptions, disabled: disabled }]"
       :style="`width: ${width}px; height: ${height}px;`"
@@ -93,12 +93,18 @@ const props = withDefaults(defineProps<IProps>(), {
   maxDisplay: 6,
   modelValue: null,
 })
+
+// 全局唯一的select class
+const selectUniClass = ref()
+// 滚动加载的q-select dom
+const domClass = ref("")
 const selectedName = ref()
 const hoverValue = ref() // 鼠标悬浮项的value值
 const showOptions = ref(false) // options面板
 const activeBlur = ref(true) // 是否激活blur事件
 const showClose = ref(false) // 清除按钮显隐
 const select = ref()
+
 watchEffect(() => {
   // 回调立即执行一次，同时会自动跟踪回调中所依赖的所有响应式依赖
   initSelector()
@@ -182,7 +188,7 @@ function loadMoreFn() {
 }
 // 计算滚动距离
 function calcScrollDis() {
-  const element = document.querySelector(".q-select .q-select-loadmore")
+  const element = document.querySelector(domClass.value)
   if (element) {
     const { scrollTop, scrollHeight, clientHeight } = element
     const scrollDistance = scrollHeight - scrollTop <= clientHeight
@@ -192,15 +198,27 @@ function calcScrollDis() {
   }
 }
 
+// 生成全局唯一的class
+const uniSelectClass = () => {
+  const num = Math.ceil(Math.random() * 100 + 1)
+  if (document.getElementById(`qSelect${num}`)) {
+    uniSelectClass()
+  } else {
+    return `qSelect${num}`
+  }
+}
+
 onMounted(() => {
+  selectUniClass.value = uniSelectClass()
+  domClass.value = "." + selectUniClass.value + " .q-select-loadmore"
   nextTick(() => {
     // 监听加载更多滚动事件
-    const element = document.querySelector(".q-select .q-select-loadmore")
+    const element = document.querySelector(domClass.value)
     element && element.addEventListener("scroll", calcScrollDis)
   })
 })
 onUnmounted(() => {
-  const element = document.querySelector(".q-select .q-select-loadmore")
+  const element = document.querySelector(domClass.value)
   element && element.removeEventListener("scroll", calcScrollDis)
 })
 </script>

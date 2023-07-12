@@ -196,6 +196,8 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
   emits: ["update:modelValue", "change"],
   setup(__props, { emit: emits }) {
     const props = __props;
+    const selectUniClass = ref();
+    const domClass = ref("");
     const selectedName = ref();
     const hoverValue = ref();
     const showOptions = ref(false);
@@ -275,7 +277,7 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
       }
     }
     function calcScrollDis() {
-      const element = document.querySelector(".q-select .q-select-loadmore");
+      const element = document.querySelector(domClass.value);
       if (element) {
         const { scrollTop, scrollHeight, clientHeight } = element;
         const scrollDistance = scrollHeight - scrollTop <= clientHeight;
@@ -284,20 +286,30 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
         }
       }
     }
+    const uniSelectClass = () => {
+      const num = Math.ceil(Math.random() * 100 + 1);
+      if (document.getElementById(`qSelect${num}`)) {
+        uniSelectClass();
+      } else {
+        return `qSelect${num}`;
+      }
+    };
     onMounted(() => {
+      selectUniClass.value = uniSelectClass();
+      domClass.value = "." + selectUniClass.value + " .q-select-loadmore";
       nextTick(() => {
-        const element = document.querySelector(".q-select .q-select-loadmore");
+        const element = document.querySelector(domClass.value);
         element && element.addEventListener("scroll", calcScrollDis);
       });
     });
     onUnmounted(() => {
-      const element = document.querySelector(".q-select .q-select-loadmore");
+      const element = document.querySelector(domClass.value);
       element && element.removeEventListener("scroll", calcScrollDis);
     });
     return (_ctx, _cache) => {
       const _component_q_icon = resolveComponent("q-icon");
       return openBlock(), createElementBlock("div", {
-        class: "q-select",
+        class: normalizeClass(["q-select", selectUniClass.value]),
         style: normalizeStyle(`height: ${_ctx.height}px;`)
       }, [
         createElementVNode("div", {
@@ -359,12 +371,12 @@ const _sfc_main$2 = /* @__PURE__ */ defineComponent({
           ]),
           _: 1
         })
-      ], 4);
+      ], 6);
     };
   }
 });
-const index_vue_vue_type_style_index_0_scoped_a6b04991_lang = "";
-const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-a6b04991"]]);
+const index_vue_vue_type_style_index_0_scoped_4078b944_lang = "";
+const QSelect = /* @__PURE__ */ _export_sfc(_sfc_main$2, [["__scopeId", "data-v-4078b944"]]);
 QSelect.install = (app) => {
   app.component(QSelect.name, QSelect);
 };

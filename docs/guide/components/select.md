@@ -74,8 +74,22 @@ const optionsCustom = ref([
 
 // 加载更多
 let moreSelVal = ref(1)
+let moreSelVal2 = ref(2)
 let loading = ref(false)
+let loading2 = ref(false)
 const modeOptions = ref([
+  { id: 1, label: "label-1", value: "1" },
+  { id: 2, label: "label-2", value: "2" },
+  { id: 3, label: "label-3", value: "3" },
+  { id: 4, label: "label-4", value: "4" },
+  { id: 5, label: "label-5", value: "5" },
+  { id: 6, label: "label-6", value: "6" },
+  { id: 7, label: "label-7", value: "7" },
+  { id: 8, label: "label-8", value: "8" },
+  { id: 9, label: "label-9", value: "9" },
+  { id: 10, label: "label-10", value: "10" },
+])
+const modeOptions2 = ref([
   { id: 1, label: "label-1", value: "1" },
   { id: 2, label: "label-2", value: "2" },
   { id: 3, label: "label-3", value: "3" },
@@ -104,7 +118,26 @@ const getList = () => {
         value: val,
       })
     }
-    loading.value = false
+     loading.value = false
+  }, 1000)
+}
+// 获取下拉菜单数据
+const getList2 = () => {
+  const len = modeOptions2.value.length
+  if (len >= 50) {
+    return
+  }
+ loading2.value = true
+  setTimeout(() => {
+    for (let index = 1; index <= 10; index++) {
+      const val = len + index
+      modeOptions2.value.push({
+        id: val,
+        label: `label-${val}`,
+        value: val,
+      })
+    }
+     loading2.value = false
   }, 1000)
 }
 
@@ -163,7 +196,11 @@ watchEffect(() => {
 
 ## 加载更多选项
 
+_通过为 select 生成唯一 class 类名后，再获取该类名 dom ，监听其滚动事件。达到页面多个（小于 100 个）select 加载更多时互不影响。_
+
 <q-select :options="modeOptions" v-model="moreSelVal" value="id" :loading="loading" :loadmore="getList"/>
+
+<q-select style="marginLeft:30px;" :options="modeOptions2" v-model="moreSelVal2" value="id" :loading="loading2" :loadmore="getList2" />
 
 ::: details Code
 
@@ -172,8 +209,22 @@ watchEffect(() => {
 import { ref } from "vue"
 
 const moreSelVal = ref(1)
+const moreSelVal2 = ref(2)
 let loading = ref(false)
+let loading2 = ref(false)
 const modeOptions = ref([
+  { id: 1, label: "label-1", value: "1" },
+  { id: 2, label: "label-2", value: "2" },
+  { id: 3, label: "label-3", value: "3" },
+  { id: 4, label: "label-4", value: "4" },
+  { id: 5, label: "label-5", value: "5" },
+  { id: 6, label: "label-6", value: "6" },
+  { id: 7, label: "label-7", value: "7" },
+  { id: 8, label: "label-8", value: "8" },
+  { id: 9, label: "label-9", value: "9" },
+  { id: 10, label: "label-10", value: "10" },
+])
+const modeOptions2 = ref([
   { id: 1, label: "label-1", value: "1" },
   { id: 2, label: "label-2", value: "2" },
   { id: 3, label: "label-3", value: "3" },
@@ -207,7 +258,9 @@ const getList = () => {
 }
 </script>
 <template>
-  <q-select :options="modeOptions" v-model="moreSelVal" value="id" :loading="loading" :loadmore="getList" />
+  <q-select :options="modeOptions" v-model="moreSelVal" :loading="loading" :loadmore="getList" />
+
+  <q-select :options="modeOptions2" v-model="moreSelVal2" :loading="loading2" :loadmore="getList" />
 </template>
 ```
 
